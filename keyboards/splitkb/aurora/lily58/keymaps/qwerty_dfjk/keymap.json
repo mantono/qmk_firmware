@@ -30,7 +30,7 @@
       "KC_I",
       "KC_O",
       "KC_P",
-      "KC_BSPC",
+      "KC_TAB",
       "KC_LSFT",
       "KC_A",
       "KC_S",
@@ -61,7 +61,7 @@
       "KC_LALT",
       "LT(3,KC_ESC)",
       "LGUI_T(KC_SPC)",
-      "MO(2)",
+      "LT(2,KC_BSPC)",
       "KC_ENT",
       "KC_RALT",
       "KC_DEL"
