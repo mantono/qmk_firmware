@@ -2,14 +2,12 @@
 KEYMAP=$1
 qmk --version || nix-shell
 #qmk compile -kb ferris/sweep -km $KEYMAP -e CONVERT_TO=liatris || exit 1
+rm -frv *.uf2
 qmk compile -kb splitkb/aurora/lily58 -km $KEYMAP -e CONVERT_TO=liatris || exit 1
 echo "Firmware compiled."
 echo "Please enter password for sudo."
 sudo -v
 echo "Connect first part of keyboard and set it in boot/flash mode."
-# Verify that the label is the same as what is used by the micro controller.
-# Check the label name in /dev/disk/by-label - it should be "RPI-RP2" or the
-# code below used when mounting should be updated where the label is specified
 
 FILE=$(ls -1rt --sort=time|grep ".uf2"|tail -n 1)
 echo "Using firmware $FILE"

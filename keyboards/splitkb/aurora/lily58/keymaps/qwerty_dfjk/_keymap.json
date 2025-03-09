@@ -64,7 +64,7 @@
       "LT(2,KC_BSPC)",
       "KC_ENT",
       "KC_RALT",
-      "KC_DEL"
+      "LGUI(KC_SPC)"
     ],
     [
       "KC_TRNS",
