@@ -13,7 +13,7 @@ FILE=$(ls -1rt --sort=time|grep ".uf2"|tail -n 1)
 echo "Using firmware $FILE"
 
 # Flash first half
-until sudo mount --source LABEL=RPI-RP2 --target /mnt --type vfat --onlyonce --options defaults,noatime,users
+until sudo mount --source LABEL=RPI-RP2 --target /mnt --type vfat --options rw
 do
   sleep 5
   echo "Failed to mount device, please connect it"
@@ -28,7 +28,7 @@ sudo umount /mnt || exit 2
 echo "Please connect second half and set it in boot/flash mode."
 sleep 5
 
-until sudo mount --source LABEL=RPI-RP2 --target /mnt --type vfat --onlyonce --options defaults,noatime,users
+until sudo mount --source LABEL=RPI-RP2 --target /mnt --type vfat --options rw
 do
   sleep 5
   echo "Failed to mount device, please connect it"
