@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 KEYMAP=$1
 qmk --version || nix-shell
 #qmk compile -kb ferris/sweep -km $KEYMAP -e CONVERT_TO=liatris || exit 1
@@ -14,7 +14,8 @@ echo -e "Using firmware $FILE\n"
 # Flash first half
 read -p "Connect first part of keyboard and set it in boot/flash mode." || exit
 
-DEVICE=$(lsblk --output=path,id,label --filter 'LABEL=="RPI-RP2" && TYPE=="part"'|tail -n 1|awk '{print $1}')
+#DEVICE=$(lsblk --output=path,id,label --filter 'LABEL=="RPI-RP2" && TYPE=="part"'|tail -n 1|awk '{print $1}')
+DEVICE=$(lsblk --output=path,id,label,type|grep RPI-RP2|grep part|head -n 1|awk '{print $1}')
 
 echo "Using device $DEVICE"
 lsblk $DEVICE -o PATH,LABEL,ID,FSTYPE,SIZE,MOUNTPOINTS
@@ -28,7 +29,7 @@ echo -e "First half of keyboard successfully flashed\n"
 # Flash second half
 read -p "Please connect second half and set it in boot/flash mode." || exit
 
-DEVICE=$(lsblk --output=path,id,label --filter 'LABEL=="RPI-RP2" && TYPE=="part"'|tail -n 1|awk '{print $1}')
+DEVICE=$(lsblk --output=path,id,label,type|grep RPI-RP2|grep part|head -n 1|awk '{print $1}')
 
 echo "Using device $DEVICE"
 lsblk $DEVICE -o PATH,LABEL,ID,FSTYPE,SIZE,MOUNTPOINTS
