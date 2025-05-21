@@ -21,6 +21,7 @@ OLED_ENABLE = yes
 # while we use the regular RGB underglow for testing
 RGB_MATRIX_ENABLE = no
 RGBLIGHT_ENABLE = no
+LTO_ENABLE = no
 
 CAPS_WORD = yes
 TAP_DANCE_ENABLE = no

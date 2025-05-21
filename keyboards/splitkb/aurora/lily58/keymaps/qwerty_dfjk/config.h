@@ -39,6 +39,7 @@
 // Always connect the USB cable to the left side of the two keyboard halves
 #define MASTER_LEFT
 #define DETECT_USB_SPLIT
+#define SPLIT_USB_DETECT
 
 // Pick good defaults for enabling homerow modifiers
 #define TAPPING_TERM 220

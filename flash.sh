@@ -7,35 +7,35 @@ qmk compile -kb splitkb/aurora/lily58 -km $KEYMAP -e CONVERT_TO=liatris || exit 
 echo "Firmware compiled."
 echo "Please enter password for sudo."
 sudo -v
-echo "Connect first part of keyboard and set it in boot/flash mode."
 
 FILE=$(ls -1rt --sort=time|grep ".uf2"|tail -n 1)
-echo "Using firmware $FILE"
+echo -e "Using firmware $FILE\n"
 
 # Flash first half
-until sudo mount --source LABEL=RPI-RP2 --target /mnt --type vfat --options rw
-do
-  sleep 5
-  echo "Failed to mount device, please connect it"
-done
+read -p "Connect first part of keyboard and set it in boot/flash mode." || exit
 
-sudo cp -v $FILE /mnt &&
-sleep 3 &&
-echo "First half of keyboard successfully flashed"
-sudo umount /mnt || exit 2
+DEVICE=$(lsblk --output=path,id,label --filter 'LABEL=="RPI-RP2" && TYPE=="part"'|tail -n 1|awk '{print $1}')
+
+echo "Using device $DEVICE"
+lsblk $DEVICE -o PATH,LABEL,ID,FSTYPE,SIZE,MOUNTPOINTS
+
+echo
+read -p "Confirm writing $FILE to $DEVICE" || exit
+
+sudo sh -c "cat $FILE > $DEVICE" &&
+echo -e "First half of keyboard successfully flashed\n"
 
 # Flash second half
-echo "Please connect second half and set it in boot/flash mode."
-sleep 5
+read -p "Please connect second half and set it in boot/flash mode." || exit
 
-until sudo mount --source LABEL=RPI-RP2 --target /mnt --type vfat --options rw
-do
-  sleep 5
-  echo "Failed to mount device, please connect it"
-done
-sudo cp -v $FILE /mnt &&
-sleep 3 &&
+DEVICE=$(lsblk --output=path,id,label --filter 'LABEL=="RPI-RP2" && TYPE=="part"'|tail -n 1|awk '{print $1}')
+
+echo "Using device $DEVICE"
+lsblk $DEVICE -o PATH,LABEL,ID,FSTYPE,SIZE,MOUNTPOINTS
+
+echo
+read -p "Confirm writing $FILE to $DEVICE" || exit
+
+sudo sh -c "cat $FILE > $DEVICE" &&
 echo "Second half of keyboard successfully flashed"
-sudo umount /mnt
-
 echo "Firmware update completed"
