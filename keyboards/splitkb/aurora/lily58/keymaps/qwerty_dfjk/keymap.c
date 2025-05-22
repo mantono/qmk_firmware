@@ -42,7 +42,7 @@ void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
 // Tap Dance declarations
 enum {
   // a -> ä
-  TD_A_AE,
+  TD_E_AE,
   // w -> å
   TD_W_AA,
   // o -> ö
@@ -50,7 +50,7 @@ enum {
 };
 
 tap_dance_action_t tap_dance_actions[] = {
-  [TD_A_AE] = ACTION_TAP_DANCE_TAP_HOLD(KC_A, RALT(KC_A)),
+  [TD_E_AE] = ACTION_TAP_DANCE_TAP_HOLD(KC_E, RALT(KC_A)),
   [TD_W_AA] = ACTION_TAP_DANCE_TAP_HOLD(KC_W, RALT(KC_W)),
   [TD_O_OE] = ACTION_TAP_DANCE_TAP_HOLD(KC_O, RALT(KC_O))
 };
@@ -59,7 +59,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     tap_dance_action_t *action;
 
     switch (keycode) {
-        case TD(TD_A_AE):
+        case TD(TD_E_AE):
         case TD(TD_W_AA):
         case TD(TD_O_OE):
             action = &tap_dance_actions[QK_TAP_DANCE_GET_INDEX(keycode)];
@@ -79,11 +79,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
  * edit it directly.
  */
 
+// Aliases
+#define XXXX KC_NO
+#define ____ KC_TRNS
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT(KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_TAB, KC_Q, TD(TD_W_AA), KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P, KC_TAB, KC_LSFT, TD(TD_A_AE), KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_RSFT, KC_LCTL, KC_Z, KC_X, KC_C, KC_V, KC_B, MEH(KC_LEFT), MEH(KC_RGHT), KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RCTL, CW_TOGG, KC_LALT, LT(3,KC_ESC), LGUI_T(KC_SPC), LT(1,KC_BSPC), LT(2,KC_ENT), KC_RALT, KC_DEL),
-    [1] = LAYOUT(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, LCTL(KC_LEFT), LCTL(KC_RGHT), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_HOME, KC_LEFT, KC_RGHT, KC_END, KC_PGDN, KC_DOWN, KC_UP, KC_PGUP, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, QK_REP, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_NO),
-    [2] = LAYOUT(KC_TRNS, RALT(KC_1), RALT(KC_2), RALT(KC_3), RALT(KC_4), RALT(KC_5), RALT(KC_6), RALT(KC_7), RALT(KC_8), RALT(KC_9), RALT(KC_0), KC_TRNS, KC_TRNS, LSFT(KC_1), LSFT(KC_2), LSFT(KC_3), LSFT(KC_4), LSFT(KC_5), LSFT(KC_6), LSFT(KC_7), LSFT(KC_8), LSFT(KC_9), LSFT(KC_0), KC_TRNS, KC_TRNS, KC_NO, KC_LT, KC_LBRC, KC_LCBR, KC_LPRN, KC_RPRN, KC_RCBR, KC_RBRC, KC_GT, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_DQUO, KC_QUOT, KC_NO, KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_NO),
-    [3] = LAYOUT(QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, LCTL(KC_PMNS), LSFT(KC_PPLS), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS, KC_TRNS, KC_NO, KC_NO, KC_NO)
+    [0] = LAYOUT(
+        KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5,                                                    KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS,
+        XXXX, KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                        KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P, KC_EQL,
+        KC_ESC, LCTL_T(KC_A), LSFT_T(KC_S), KC_D, KC_F, KC_G,                                    KC_H, KC_J, KC_K, RSFT_T(KC_L), RCTL_T(KC_SCLN), KC_QUOT,
+        KC_TAB, KC_Z, KC_X, KC_C, KC_V, KC_B, MEH(KC_LEFT),                                      MEH(KC_RGHT), KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, LALT(KC_TAB),
+        CW_TOGG, KC_LALT, MO(1), LGUI_T(KC_SPC),                                          LT(1,KC_BSPC), LT(2,KC_ENT), KC_RALT, KC_DEL
+    ),
+    [1] = LAYOUT(XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, LCTL(KC_LEFT), LCTL(KC_RGHT), XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, KC_HOME, KC_LEFT, KC_RGHT, KC_END, KC_PGDN, KC_DOWN, KC_UP, KC_PGUP, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, QK_REP, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, ____, ____, XXXX, XXXX, XXXX),
+    [2] = LAYOUT(
+        ____, RALT(KC_1), RALT(KC_2), RALT(KC_3), RALT(KC_4), RALT(KC_5),                       RALT(KC_6), RALT(KC_7), RALT(KC_8), RALT(KC_9), RALT(KC_0), ____,
+        ____, LSFT(KC_1), LSFT(KC_2), LSFT(KC_3), LSFT(KC_4), LSFT(KC_5),                       LSFT(KC_6), LSFT(KC_7), LSFT(KC_8), LSFT(KC_9), LSFT(KC_0), ____,
+        ____, KC_LT, KC_LBRC, KC_LCBR, KC_LPRN, KC_DQUO,                                        KC_QUOT, KC_RPRN, KC_RCBR, KC_RBRC, KC_GT, ____,
+        ____, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX,                                               XXXX, XXXX, XXXX, ____, ____, ____, ____,
+        ____, ____, ____, ____,                                                                 ____, ____, ____, ____
+    ),
+    [3] = LAYOUT(QK_BOOT, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, QK_BOOT, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, LCTL(KC_PMNS), LSFT(KC_PPLS), XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, ____, ____, XXXX, XXXX, XXXX)
 };
 
 #ifdef OTHER_KEYMAP_C
