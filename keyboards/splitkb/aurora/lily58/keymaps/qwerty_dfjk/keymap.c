@@ -71,6 +71,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+// Combos
+
+const uint16_t PROGMEM switcher[] = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(switcher, LGUI(KC_H)),
+    COMBO(launcher, LGUI(KC_G)), // keycodes with modifiers are possible too!
+};
+
 
 
 /* THIS FILE WAS GENERATED!
