@@ -55,7 +55,13 @@
 #define RETRO_TAPPING
 
 // Active CAPS_WORD when left and right shift is pressed at the same time
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+//#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
+// https://docs.qmk.fm/features/caps_word#invert-on-shift 
+#define CAPS_WORD_INVERT_ON_SHIFT
+
+// https://docs.qmk.fm/features/caps_word#idle-timeout
+#define CAPS_WORD_IDLE_TIMEOUT 7000  // 7 seconds
 
 // Set the number of combos present
 // #define COMBO_COUNT 3

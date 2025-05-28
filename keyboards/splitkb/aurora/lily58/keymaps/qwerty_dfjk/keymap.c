@@ -73,14 +73,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Combos
 
-const uint16_t PROGMEM switcher[] = {KC_F, KC_J, COMBO_END};
-const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
-combo_t key_combos[] = {
-    COMBO(switcher, LGUI(KC_H)),
-    COMBO(launcher, LGUI(KC_G)), // keycodes with modifiers are possible too!
+const uint16_t PROGMEM switcher[]   = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM launcher[]   = {KC_G, KC_H, COMBO_END};
+const uint16_t PROGMEM caps_word[]  = {KC_S, KC_L, COMBO_END};
+
+enum combo_events {
+    SWITCHER,
+    LAUNCHER,
+    CAPSWORD,   // Add an enum value for your Caps Word combo
 };
 
+combo_t key_combos[] = {
+    [SWITCHER] = COMBO(switcher, LGUI(KC_H)),
+    [LAUNCHER] = COMBO(launcher, LGUI(KC_G)),
+    [CAPSWORD] = COMBO_ACTION(caps_word), // Use COMBO_ACTION, not COMBO!
+};
 
+// Combo event handler for custom actions
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch (combo_index) {
+        case CAPSWORD:
+            if (pressed) {
+                caps_word_on();      // Call Caps Word ON function!
+            }
+            break;
+    }
+}
 
 /* THIS FILE WAS GENERATED!
  *
