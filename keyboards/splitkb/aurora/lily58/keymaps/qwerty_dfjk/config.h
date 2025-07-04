@@ -57,5 +57,11 @@
 // Active CAPS_WORD when left and right shift is pressed at the same time
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
+// Tapping this number of times holds the key until tapped once again.
+#define ONESHOT_TAP_TOGGLE 2
+
+// Time (in ms) before the one shot key is released
+#define ONESHOT_TIMEOUT 5000
+
 // Set the number of combos present
 // #define COMBO_COUNT 3
