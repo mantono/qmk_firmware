@@ -111,13 +111,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [2] = LAYOUT(
         ____, RALT(KC_1), RALT(KC_2), RALT(KC_3), RALT(KC_4), RALT(KC_5),                       RALT(KC_6), RALT(KC_7), RALT(KC_8), RALT(KC_9), RALT(KC_0), ____,
-        //           !           @           #           $           %                                 ^           &           *      -        +
-        ____, LSFT(KC_1), LSFT(KC_2), LSFT(KC_3), LSFT(KC_4), LSFT(KC_5),                       LSFT(KC_6), LSFT(KC_7), LSFT(KC_8), KC_MINS, KC_PPLS, ____,
+        //      \        @      #        $         %                                              *        =       +        -        /
+        ____, KC_BSLS, KC_AT, KC_HASH, KC_DLR, KC_PERC,                                         KC_ASTR, KC_EQL, KC_PLUS, KC_MINS, KC_SLSH, ____,
         //      <      >      (        )        '                                                 "        {        }        [        ]
         ____, KC_LT, KC_GT, KC_LPRN, KC_RPRN, KC_QUOT,                                          KC_DQUO, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, ____,
-        //     |                     `                                                                        =
-        ____, KC_PIPE, XXXX, XXXX, KC_GRV, XXXX, XXXX,                                          XXXX, XXXX, KC_EQL, ____, ____, ____, ____,
-        ____, ____, ____, ____,                                                                 ____, ____, ____, ____
+        //      :        _        |        &        ^                                                   !        ?        ,        .       ;
+        ____, KC_COLN, KC_UNDS, KC_PIPE, KC_AMPR, KC_CIRC, XXXX,                                XXXX, KC_EXLM, KC_QUES, KC_COMM, KC_DOT, KC_SCLN, ____,
+        //            `                                                                                 ~
+        ____, ____, KC_GRV, ____,                                                               ____, KC_TILD, ____, ____
     ),
 
     [3] = LAYOUT(
