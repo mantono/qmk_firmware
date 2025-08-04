@@ -42,7 +42,7 @@
 #define SPLIT_USB_DETECT
 
 // Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 220
+#define TAPPING_TERM 200
 
 // Disable PERMISSIVE_HOLD since it does not quite suite my style of typings, see
 // https://docs.qmk.fm/tap_hold#permissive-hold

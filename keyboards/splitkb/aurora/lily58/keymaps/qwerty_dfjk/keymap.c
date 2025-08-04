@@ -73,7 +73,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Combos
 
-const uint16_t PROGMEM switcher[] = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM switcher[] = {LT(2, KC_F), LT(2, KC_J), COMBO_END};
 const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
 combo_t key_combos[] = {
     COMBO(switcher, LGUI(KC_H)),
@@ -96,17 +96,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5,                                                    KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS,
         XXXX, KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                        KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P, XXXX,
-        KC_ESC, LCTL_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LT(2, KC_F), KC_G,                   KC_H, LT(2, KC_J), LALT_T(KC_K), RSFT_T(KC_L), RCTL_T(KC_SCLN), KC_ENT,
+        KC_ESC, LCTL_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LT(2, KC_F), KC_G,                     KC_H, LT(2, KC_J), LALT_T(KC_K), RSFT_T(KC_L), RCTL_T(KC_SCLN), KC_ENT,
         KC_TAB, KC_Z, KC_X, KC_C, KC_V, KC_B, MEH(KC_LEFT),                        MEH(KC_RGHT), KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, LALT(KC_TAB),
                 CW_TOGG, KC_LALT, LT(3, KC_ESC), LGUI_T(KC_SPC),                           LT(1, KC_BSPC), KC_ENT, KC_RALT, KC_DEL
     ),
 
     [1] = LAYOUT(
-        XXXX, XXXX, XXXX, XXXX, XXXX, XXXX,                                                     XXXX, XXXX, XXXX, XXXX, XXXX, XXXX,
-        XXXX, XXXX, XXXX, XXXX, XXXX, XXXX,                                                     XXXX, XXXX, XXXX, XXXX, XXXX, XXXX,
-        XXXX, MS_BTN1, KC_HOME, LCTL(KC_LEFT), LCTL(KC_RGHT), KC_END,             KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, MS_BTN2, XXXX,
-        XXXX, XXXX, XXXX, XXXX, QK_REP, XXXX, XXXX,                                       XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX,
-                            ____, ____, ____, KC_TAB,                                       LALT(KC_TAB), ____, ____, ____
+        XXXX, XXXX,    XXXX,    XXXX,    XXXX,    XXXX,                                   XXXX,         XXXX,    XXXX,  XXXX,     XXXX,   XXXX,
+        XXXX, XXXX,    XXXX,    XXXX,    XXXX,    XXXX,                                   XXXX,         XXXX,    XXXX,  XXXX,     XXXX,   XXXX,
+        XXXX, KC_HOME, KC_LCTL, KC_LEFT, KC_RGHT, KC_TAB,                                 LALT(KC_TAB), KC_DOWN, KC_UP, KC_RIGHT, KC_END, XXXX,
+        XXXX, XXXX,    XXXX,    XXXX,    QK_REP,  XXXX,   XXXX,                     XXXX, XXXX,         XXXX,    XXXX,  XXXX,     XXXX,   XXXX,
+                                ____, ____, ____, ____,                                   ____, ____, ____, ____
     ),
 
     [2] = LAYOUT(
