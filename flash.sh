@@ -1,9 +1,14 @@
 #!/bin/sh
-KEYMAP=$1
+
+# Like "splitkb/aurora/lily58" or "ferris/sweep"
+KEYBOARD=$1
+# Like "default", "debug", "qwerty_dfjk" or somethinge else
+KEYMAP=$2
+
 qmk --version || nix-shell
 #qmk compile -kb ferris/sweep -km $KEYMAP -e CONVERT_TO=liatris || exit 1
 rm -frv *.uf2
-qmk compile -kb splitkb/aurora/lily58 -km $KEYMAP -e CONVERT_TO=liatris || exit 1
+qmk compile -kb $KEYBOARD -km $KEYMAP -e CONVERT_TO=liatris || exit 1
 echo "Firmware compiled."
 echo "Please enter password for sudo."
 sudo -v
