@@ -63,5 +63,8 @@
 // Time (in ms) before the one shot key is released
 #define ONESHOT_TIMEOUT 5000
 
+// Turn off after 60 seconds.
+#define LAYER_LOCK_IDLE_TIMEOUT 60000
+
 // Set the number of combos present
 // #define COMBO_COUNT 3
