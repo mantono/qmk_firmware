@@ -89,17 +89,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5,                                                    KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS,
         XXXX, KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                        KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P, XXXX,
-        KC_ESC, LT(2, KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,                     KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), LT(2, KC_SCLN), KC_ENT,
-        KC_TAB, LSFT_T(KC_Z), KC_X, KC_C, KC_V, KC_B, MEH(KC_LEFT),                        MEH(KC_RGHT), KC_N, KC_M, KC_COMM, KC_DOT, RSFT_T(KC_SLSH), LALT(KC_TAB),
-                CW_TOGG, KC_LALT, LT(3, KC_ESC), LGUI_T(KC_SPC),                           LT(1, KC_BSPC), TD(TD_ENTER), KC_RALT, KC_DEL
+        KC_ESC, LT(1, KC_A), KC_S, LALT_T(KC_D), LCTL_T(KC_F), KC_G,                     KC_H, RCTL_T(KC_J), LALT_T(KC_K), KC_L, LT(1, KC_SCLN), KC_ENT,
+        KC_TAB, LT(2, KC_Z), KC_X, KC_C, KC_V, KC_B, MEH(KC_LEFT),                        MEH(KC_RGHT), KC_N, KC_M, KC_COMM, KC_DOT, LT(2, KC_SLSH), LALT(KC_TAB),
+                CW_TOGG, KC_LALT, LT(3, KC_ESC), LGUI_T(KC_SPC),                           LSFT_T(KC_BSPC), TD(TD_ENTER), KC_RALT, KC_DEL
     ),
 
     [1] = LAYOUT(
         XXXX,     XXXX,     XXXX,     XXXX,     XXXX,            XXXX,                                   XXXX,    XXXX,    XXXX,      XXXX,     XXXX,   XXXX,
         XXXX,     XXXX,     XXXX,     XXXX,     XXXX,            XXXX,                                   XXXX,    XXXX,   TG(1),      XXXX,     XXXX,   XXXX,
-        XXXX,  KC_HOME,  KC_LCTL,  KC_LEFT,  KC_RGHT,            XXXX,                                   XXXX, KC_DOWN,   KC_UP,      XXXX,   KC_END,   XXXX,
-        XXXX,     XXXX,     XXXX,     XXXX,   QK_REP,            XXXX,   XXXX,                     XXXX, XXXX,    XXXX,    XXXX,      XXXX,     XXXX,   XXXX,
-                            ____,     ____,     ____,   QK_LAYER_LOCK,                                   ____,    ____,    ____,      ____
+        XXXX,     XXXX,  KC_LCTL,  KC_LEFT,  KC_RGHT,            XXXX,                                KC_HOME, KC_DOWN,   KC_UP,    KC_END,     XXXX,   XXXX,
+        XXXX,     XXXX,     XXXX,     XXXX,   QK_REP,            XXXX,   XXXX,                  XXXX,    XXXX,    XXXX,    XXXX,      XXXX,     XXXX,   XXXX,
+                            ____,     ____,    TG(1),            ____,                                   ____,    ____,    ____,      ____
     ),
 
     [2] = LAYOUT(
@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXX, KC_F1, KC_F2, KC_F3, KC_F4, KC_5,                                                 KC_F6,   KC_F7, KC_F8, KC_F9, KC_F10, KC_F11,
         XXXX, KC_1,  KC_2,  KC_3,  KC_4,  KC_5,                                                 KC_6,    KC_7,  KC_8,  KC_9,  KC_0,   XXXX,
         XXXX, XXXX,  XXXX,  XXXX,  XXXX,  XXXX, LCTL(KC_PMNS),                   LCTL(KC_PPLS), XXXX,    XXXX,  XXXX,  XXXX,  XXXX,   XXXX,
-                            ____,  ____,  ____, ____,                                    ____,  ____,    ____,  ____
+                            ____,  ____,  ____, ____,                                  ____,  ____,    ____,  ____
     ),
 
     [4] = LAYOUT(
@@ -129,18 +129,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ____, LSFT(KC_Z), LSFT(KC_X), LSFT(KC_C), LSFT(KC_V),  LSFT(KC_B),  ____,        ____, LSFT(KC_N),  LSFT(KC_M),          XXXX,       KC_DOT,       KC_UNDS,    ____,
                                 ____,       ____,       ____,       TG(4),                     TG(4),            TG(4),          ____,         ____
     ),
+
+// Layer template, copy paste as needed
+//    [5] = LAYOUT(
+//        XXXX, XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                                 XXXX,    XXXX,  XXXX,  XXXX,  XXXX,   XXXX,
+//        XXXX, XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                                 XXXX,    XXXX,  XXXX,  XXXX,  XXXX,   XXXX,
+//        XXXX, XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                                 XXXX,    XXXX,  XXXX,  XXXX,  XXXX,   XXXX,
+//        XXXX, XXXX,  XXXX,  XXXX,  XXXX,  XXXX,  ____,                                    ____, XXXX,    XXXX,  XXXX,  XXXX,  XXXX,   XXXX,
+//                            ____,  ____,  ____,  ____,                                    ____, ____,    ____,  ____
+//    ),
+
 };
 
 // Combos
 const uint16_t PROGMEM switcher[] = {LCTL_T(KC_F), RCTL_T(KC_J), COMBO_END};
 const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
-const uint16_t PROGMEM caps_word[] = {LSFT_T(KC_S), RSFT_T(KC_L), COMBO_END};
-const uint16_t PROGMEM caps_word2[] = {LSFT_T(KC_Z), RSFT_T(KC_SCLN), COMBO_END};
+const uint16_t PROGMEM nav_lock[] = {LT(1, KC_A), LT(1, KC_SCLN), COMBO_END};
+
 combo_t key_combos[] = {
     COMBO(switcher, LGUI(KC_H)),
     COMBO(launcher, LGUI(KC_G)), // keycodes with modifiers are possible too!
-    COMBO(caps_word, TO(4)),
-    COMBO(caps_word2, TO(4)),
+    COMBO(nav_lock, TG(1))
 };
 
 #ifdef OTHER_KEYMAP_C

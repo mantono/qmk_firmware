@@ -58,10 +58,12 @@
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
 // Tapping this number of times holds the key until tapped once again.
-#define ONESHOT_TAP_TOGGLE 2
+#define ONESHOT_TAP_TOGGLE 5
 
 // Time (in ms) before the one shot key is released
 #define ONESHOT_TIMEOUT 5000
+
+#define TAPPING_TOGGLE 5
 
 // Turn off after 60 seconds.
 #define LAYER_LOCK_IDLE_TIMEOUT 60000
