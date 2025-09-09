@@ -42,7 +42,7 @@
 #define SPLIT_USB_DETECT
 
 // Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 200
+#define TAPPING_TERM 180
 
 // Disable PERMISSIVE_HOLD since it does not quite suite my style of typings, see
 // https://docs.qmk.fm/tap_hold#permissive-hold
@@ -52,7 +52,7 @@
 #define QUICK_TAP_TERM 150
 
 // https://docs.qmk.fm/tap_hold#retro-tapping
-#define RETRO_TAPPING
+// #define RETRO_TAPPING
 
 // Active CAPS_WORD when left and right shift is pressed at the same time
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
