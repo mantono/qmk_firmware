@@ -3,77 +3,7 @@
 #    include "keymap.h"
 #endif
 
-typedef struct {
-    uint16_t tap;
-    uint16_t hold;
-    uint16_t held;
-} tap_dance_tap_hold_t;
-
-void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
-    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
-
-    if (state->pressed) {
-        if (state->count == 1
-#ifndef PERMISSIVE_HOLD
-            && !state->interrupted
-#endif
-        ) {
-            register_code16(tap_hold->hold);
-            tap_hold->held = tap_hold->hold;
-        } else {
-            register_code16(tap_hold->tap);
-            tap_hold->held = tap_hold->tap;
-        }
-    }
-}
-
-void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
-    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
-
-    if (tap_hold->held) {
-        unregister_code16(tap_hold->held);
-        tap_hold->held = 0;
-    }
-}
-
-#define ACTION_TAP_DANCE_TAP_HOLD(tap, hold) \
-    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
-
-// Tap Dance declarations
-enum {
-  // a -> ä
-  TD_E_AE,
-  // w -> å
-  TD_W_AA,
-  // o -> ö
-  TD_O_OE,
-  // enter -> ctrl + enter
-  TD_ENTER,
-};
-
-tap_dance_action_t tap_dance_actions[] = {
-  [TD_E_AE] = ACTION_TAP_DANCE_TAP_HOLD(KC_E, RALT(KC_A)),
-  [TD_W_AA] = ACTION_TAP_DANCE_TAP_HOLD(KC_W, RALT(KC_W)),
-  [TD_O_OE] = ACTION_TAP_DANCE_TAP_HOLD(KC_O, RALT(KC_O)),
-  [TD_ENTER] = ACTION_TAP_DANCE_TAP_HOLD(KC_ENT, LCTL(KC_ENT))
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    tap_dance_action_t *action;
-
-    switch (keycode) {
-        case TD(TD_E_AE):
-        case TD(TD_W_AA):
-        case TD(TD_O_OE):
-        case TD(TD_ENTER):
-            action = &tap_dance_actions[QK_TAP_DANCE_GET_INDEX(keycode)];
-            if (!record->event.pressed && action->state.count && !action->state.finished) {
-                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
-                tap_code16(tap_hold->tap);
-            }
-    }
-    return true;
-}
+#include "../../td.c"
 
 // This code comes from https://docs.qmk.fm/features/caps_word#configure-which-keys-are-word-breaking
 // but it is modified to work better with tap/dance actions, which would normally cancel
@@ -162,16 +92,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             ____,     ____,    TG(1),            ____,                                   ____,    ____,    ____,      ____
     ),
 
+    // Tap dance so ( on normal press and ) on hold and () on double tap, and the same for {}, [] and <>?
     [2] = LAYOUT(
         ____, RALT(KC_1), RALT(KC_2), RALT(KC_3), RALT(KC_4), RALT(KC_5),                       RALT(KC_6), RALT(KC_7), RALT(KC_8), RALT(KC_9), RALT(KC_0), ____,
-        //         \             @         #            $          %                                 *            =          -           +           /
-        ____,    KC_BSLS,      KC_AT,    KC_HASH,     KC_DLR,    KC_PERC,                          KC_ASTR,     KC_EQL   , KC_MINS,    KC_PLUS,    KC_SLSH, ____,
-        //         [             ]         (            )          '                                 "            {          }           :           ;
-        ____,    KC_LBRC,      KC_RBRC,  KC_LPRN,     KC_RPRN,   KC_QUOT,                          KC_DQUO,     KC_LCBR,   KC_RCBR,    KC_COLN,    KC_SCLN, ____,
-        //         <             >         |            &          ^                                 !            ?          ,           .           _
-        ____,    KC_LT,        KC_GT,    KC_PIPE,     KC_AMPR,   KC_CIRC, XXXX,              XXXX, KC_EXLM,     KC_QUES,   KC_COMM,    KC_DOT,     KC_UNDS, ____,
-        //                                             ~                                                          `
-                                ____,       ____,    KC_TILD,     KC_TAB,                     LALT(KC_TAB),     KC_GRV,       ____,       ____
+        //                               @                 #               $             %                                 *            =          +                  
+        ____,    XXXX,                 KC_AT,            KC_HASH,        KC_DLR,       KC_PERC,                          KC_ASTR,     KC_EQL,    KC_PLUS,    XXXX,          XXXX,  ____,
+        //            []                < >               { }             ( )            '                                 "            -          _           :           ;
+        ____,    TD(TD_BRACKET),    TD(TD_ANGLE),     TD(TD_CURLY),   TD(TD_PAREN),    KC_QUOT,                          KC_DQUO,     KC_MINS,   KC_UNDS,    KC_COLN,    KC_SCLN, ____,
+        //         \                                       |                &             ^                                 !            ?          ,           .           /
+        ____,    KC_BSLS,             XXXX,              KC_PIPE,         KC_AMPR,      KC_CIRC, XXXX,              XXXX, KC_EXLM,     KC_QUES,   KC_COMM,    KC_DOT,     KC_SLSH, ____,
+        //                                                ~                                                          `
+                                   ____,       ____,    KC_TILD,     KC_TAB,                     LALT(KC_TAB),     KC_GRV,       ____,       ____
     ),
 
     [3] = LAYOUT(
@@ -182,16 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             ____,  ____,  ____, ____,                                  ____,  ____,    ____,  ____
     ),
 
-    [4] = LAYOUT(
-        ____,       ____,       ____,       ____,       ____,        ____,                           ____,        ____,          ____,         ____,          ____,    ____,
-        ____, LSFT(KC_Q), LSFT(KC_W), LSFT(KC_E), LSFT(KC_R),  LSFT(KC_T),                     LSFT(KC_Y),  LSFT(KC_U),    LSFT(KC_I),   LSFT(KC_O),    LSFT(KC_P),    ____,
-        ____, LSFT(KC_A), LSFT(KC_S), LSFT(KC_D), LSFT(KC_F),  LSFT(KC_G),                     LSFT(KC_H),  LSFT(KC_J),    LSFT(KC_K),   LSFT(KC_L),          XXXX,    ____,
-        ____, LSFT(KC_Z), LSFT(KC_X), LSFT(KC_C), LSFT(KC_V),  LSFT(KC_B),  ____,        ____, LSFT(KC_N),  LSFT(KC_M),          XXXX,       KC_DOT,       KC_UNDS,    ____,
-                                ____,       ____,       ____,       TG(4),                     TG(4),            TG(4),          ____,         ____
-    ),
-
 // Layer template, copy paste as needed
-//    [5] = LAYOUT(
+//    [4] = LAYOUT(
 //        XXXX, XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                                 XXXX,    XXXX,  XXXX,  XXXX,  XXXX,   XXXX,
 //        XXXX, XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                                 XXXX,    XXXX,  XXXX,  XXXX,  XXXX,   XXXX,
 //        XXXX, XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                                 XXXX,    XXXX,  XXXX,  XXXX,  XXXX,   XXXX,
