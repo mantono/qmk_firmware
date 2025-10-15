@@ -79,30 +79,30 @@ bool caps_word_press_user(uint16_t keycode) {
 #define ____ KC_TRNS
 
 enum {
-    NAV = 1,
+    BASE = 0,
+    MOD = 1,
     SYM = 2,
-    NUM = 3,
-    MOD = 4
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
-        KC_Q, KC_W, KC_E, KC_R, KC_T,                                KC_Y, KC_U, KC_I, KC_O, KC_P,
-        KC_A, KC_S, KC_D, KC_F, KC_G,                                KC_H, KC_J, KC_K, KC_L, KC_SCLN,
-        LT(SYM, KC_Z), KC_X, KC_C, KC_V, KC_B,                       KC_N, KC_M, KC_COMM, KC_DOT, LT(SYM, KC_SLSH),
-        LT(NUM, KC_ESC), LT(NAV, KC_SPC),                            LT(MOD, KC_BSPC), TD(TD_ENTER)
+        KC_Q,    KC_W, KC_E, KC_R, KC_T,                                                KC_Y, KC_U, KC_I, KC_O, KC_P,
+        LT(SYM, KC_A), KC_S, KC_D, KC_F, KC_G,                                     KC_H, KC_J, KC_K, KC_L, LT(SYM, KC_SCLN),
+        KC_Z, KC_X, KC_C, KC_V, KC_B,                                                   KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+        LSFT_T(KC_ESC), LT(MOD, KC_SPC),                                              OSL(MOD), TD(TD_ENTER)
     ),
 
     [1] = LAYOUT(
-        LGUI(KC_Q),    XXXX,       XXXX,    LGUI(KC_R),   XXXX,                             XXXX,       XXXX,    TG(1),      XXXX,    LGUI(KC_P),
-        KC_LCTL,    KC_LSFT,    KC_LEFT,    KC_RGHT,    XXXX,                               XXXX,    KC_DOWN,    KC_UP,   KC_RSFT,  KC_RCTL,
-        XXXX,       XXXX,       XXXX,     QK_REP,    XXXX,                                  XXXX,       XXXX,     XXXX,      XXXX,    XXXX,
-                               TG(1),       ____,                                  KC_RGUI,   QK_LAYER_LOCK
+           KC_1,     KC_2,       KC_3,       KC_4,    KC_5,                                      KC_6,       KC_7,       KC_8,       KC_9,       KC_0,
+        KC_LGUI,  KC_LSFT,    KC_LALT,    KC_LCTL,    KC_DEL,                                 KC_BSPC,    KC_RCTL,    KC_LALT,    KC_RSFT,    KC_RGUI,
+           ____,     ____,    KC_LEFT,    KC_RGHT,    ____,                                      ____,    KC_DOWN,      KC_UP,       ____,       ____,
+                                             QK_LAYER_LOCK,    KC_LGUI,     KC_RGUI,    QK_LAYER_LOCK
       ),
-    // Tap-dance so '(' on normal press and ')' on hold and '()' on double tap, and the same for '{}', '[]' and '<>'
+
+   // Tap-dance so '(' on normal press and ')' on hold and '()' on double tap, and the same for '{}', '[]' and '<>'
     [2] = LAYOUT(
-        //         å                @              #                 $          %                       *            =          +              ö           ä
-            RALT(KC_W),           KC_AT,         KC_HASH,          KC_DLR,    KC_PERC,                KC_ASTR,     KC_EQL,    KC_PLUS,       RALT(KC_O),   RALT(KC_A),
+        //             å            @              #                 $          %                           *            =          +             ö           ä
+                RALT(KC_W),       KC_AT,         KC_HASH,          KC_DLR,    KC_PERC,                    KC_ASTR,     KC_EQL,    KC_PLUS, RALT(KC_O), RALT(KC_A),
         //      [ ]                < >              { }              ( )            '                       "           -           _           :           ;
             TD(TD_BRACKET),    TD(TD_ANGLE),    TD(TD_CURLY),    TD(TD_PAREN),    KC_QUOT,                KC_DQUO,    KC_MINS,    KC_UNDS,    KC_COLN,    KC_SCLN,
         //           \                                 |                &           ^                       !           ?           ,            .          /
@@ -111,19 +111,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                       KC_TILD,     KC_TAB,           LALT(KC_TAB),    KC_GRV
     ),
 
-    [3] = LAYOUT(
-        KC_1,  KC_2,  KC_3,  KC_4,  KC_5,                                  KC_6,    KC_7,  KC_8,  KC_9,  KC_0,
-        XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                  KC_SLSH, KC_4,  KC_5,  KC_6,  KC_MINS,
-        XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                  KC_ASTR, KC_1,  KC_2,  KC_3,  KC_PLUS,
-                              ____, ____,                                  ____,  KC_0
-    ),
-
-    [4] = LAYOUT(
-        ____,  ____,     ____,     ____,     ____,                      ____,     ____,     ____,     ____,     ____,
-        LGUI_T(KC_A),  LSFT_T(KC_S),    LALT_T(KC_D),   LCTL_T(KC_F),   ____,     ____,     RCTL_T(KC_J),    LALT_T(KC_K),    RSFT_T(KC_L),    RGUI_T(KC_SCLN),
-        ____,  ____,     ____,     ____,     ____,                      ____,     ____,     ____,     ____,     ____,
-                                   ____,     KC_LGUI,                   ____,     ____
-    ),
 
 // Layer template, copy paste as needed
 //    [4] = LAYOUT(
@@ -139,12 +126,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM switcher[] = {KC_F, KC_J, COMBO_END};
 const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
 //const uint16_t PROGMEM nav_lock[] = {LT(1, KC_SPC), LSFT_T(KC_BSPC), COMBO_END};
+const uint16_t PROGMEM caps_word[] = {KC_S, KC_L, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(switcher, LGUI(KC_H)),
     COMBO(launcher, LGUI(KC_G)), // keycodes with modifiers are possible too!
-    //COMBO(nav_lock, TG(1)),
-    //COMBO(caps_word, QK_CAPS_WORD_TOGGLE)
+  //COMBO(nav_lock, TG(1)),
+    COMBO(caps_word, QK_CAPS_WORD_TOGGLE)
 };
 
 #ifdef OTHER_KEYMAP_C
