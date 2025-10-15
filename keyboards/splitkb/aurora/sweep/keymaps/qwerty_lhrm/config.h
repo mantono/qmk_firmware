@@ -57,13 +57,20 @@
 // Active CAPS_WORD when left and right shift is pressed at the same time
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
+// Auto shift settings
+#define AUTO_SHIFT_TIMEOUT 150
+// Do not Auto Shift special keys, which include -_, =+, [{, ]}, ;:, '", ,<, .>, /?, and the KC_TAB.
+#define NO_AUTO_SHIFT_SPECIAL
+// Do not Auto Shift numeric keys, zero through nine.
+#define NO_AUTO_SHIFT_NUMERIC
+
 // Tapping this number of times holds the key until tapped once again.
 #define ONESHOT_TAP_TOGGLE 5
 
 // Time (in ms) before the one shot key is released
 #define ONESHOT_TIMEOUT 5000
 
-#define TAPPING_TOGGLE 5
+#define TAPPING_TOGGLE 2
 
 // Turn off after 60 seconds.
 #define LAYER_LOCK_IDLE_TIMEOUT 60000
