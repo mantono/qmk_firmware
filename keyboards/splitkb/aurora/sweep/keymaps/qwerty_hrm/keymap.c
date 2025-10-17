@@ -80,30 +80,29 @@ bool caps_word_press_user(uint16_t keycode) {
 
 enum {
     BASE = 0,
-    NAV = 1,
+    MOD = 1,
     SYM = 2,
-    NUM = 3,
-    ALPHA = 4
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
-        LT(SYM, KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), LT(SYM, KC_SCLN),
-        KC_Z, KC_X, KC_C, KC_V, KC_B,                                                   KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
-        LT(NUM, KC_ESC), LT(NAV, KC_SPC),                                              LT(NAV, KC_BSPC), TD(TD_ENTER)
+        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_SCLN),
+        KC_Z, KC_X, KC_C, KC_V, KC_B,                                                   KC_N, KC_M, KC_COMM, KC_DOT, KC_TAB,
+        LT(SYM, KC_ESC), LT(MOD, KC_SPC),                                              LT(MOD, KC_BSPC), LT(SYM, KC_ENT)
     ),
 
     [1] = LAYOUT(
-        ____,    ____,       ____,    ____,   ____,                                   ____,       ____,    ____,      ____,    ____,
-        KC_LCTL,    KC_LSFT,    KC_LEFT,    KC_RGHT,    ____,                                ____,    KC_DOWN,    KC_UP,    KC_RSFT,    KC_RCTL,
-        ____,       ____,       ____,     ____,    ____,                                  ____,       ____,     ____,      ____,    ____,
-                               QK_LAYER_LOCK,     KC_LGUI,                                  KC_RGUI,    QK_LAYER_LOCK
+           KC_1,     KC_2,       KC_3,       KC_4,    KC_5,                                      KC_6,       KC_7,       KC_8,       KC_9,       KC_0,
+        KC_LGUI,  KC_LSFT,    KC_LALT,    KC_LCTL,    XXXX,                                   KC_LEFT,    KC_DOWN,      KC_UP,   KC_RIGHT,       ____,
+          KC_F1,    KC_F2,      KC_F3,      KC_F4,   KC_F5,                                     KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,
+                                                      ____,    QK_LAYER_LOCK,              QK_LAYER_LOCK,    ____
       ),
-    // Tap     e so (     rmal press and ) on hold and () on double tap, and the same for {}, [] and <>?
+
+   // Tap-dance so '(' on normal press and ')' on hold and '()' on double tap, and the same for '{}', '[]' and '<>'
     [2] = LAYOUT(
-        //                              @              #                 $          %                       *            =          +
-                      XXXX,           KC_AT,         KC_HASH,          KC_DLR,    KC_PERC,                KC_ASTR,     KC_EQL,    KC_PLUS,       XXXX,       XXXX,
+        //             å            @              #                 $          %                           *            =          +             ö           ä
+                RALT(KC_W),       KC_AT,         KC_HASH,          KC_DLR,    KC_PERC,                    KC_ASTR,     KC_EQL,    KC_PLUS, RALT(KC_O), RALT(KC_A),
         //      [ ]                < >              { }              ( )            '                       "           -           _           :           ;
             TD(TD_BRACKET),    TD(TD_ANGLE),    TD(TD_CURLY),    TD(TD_PAREN),    KC_QUOT,                KC_DQUO,    KC_MINS,    KC_UNDS,    KC_COLN,    KC_SCLN,
         //           \                                 |                &           ^                       !           ?           ,            .          /
@@ -112,20 +111,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                       KC_TILD,     KC_TAB,           LALT(KC_TAB),    KC_GRV
     ),
 
-    [3] = LAYOUT(
-        KC_1,  KC_2,  KC_3,  KC_4,  KC_5,                                  KC_6,    KC_7,  KC_8,  KC_9,  KC_0,
-        XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                  KC_SLSH, KC_4,  KC_5,  KC_6,  KC_MINS,
-        XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                                  KC_ASTR, KC_1,  KC_2,  KC_3,  KC_PLUS,
-                              ____, ____,                                  ____,  KC_0
-    ),
 
-    [4] = LAYOUT(
-        ____,  KC_W,  KC_E,  ____,  ____,                               ____,  ____,  ____,  KC_O,  ____,
-        KC_A,  KC_S,  KC_D,  KC_F,  ____,                               ____,  KC_J,  KC_K,  KC_L,  KC_SCLN,
-        ____,  ____,  ____,  ____,  ____,                               ____,  ____,  ____,  ____,  ____,
-                             ____,  ____,                               ____,  ____
-    ),
-
+   // [4] = LAYOUT(
+   //     ____,  ____,  KC_DEL,  ____,  ____,                               ____,  ____,  TG(NAV),  ____,  ____,
+   //     ____,  ____,  KC_LEFT,  KC_RGHT,  ____,                      KC_BSPC,  KC_DOWN,  KC_UP,  ____,  ____,
+   //     ____,  ____,  ____,  ____,  ____,                               ____,  ____,  ____,  ____,  ____,
+   //                          ____,  ____,                               ____,  ____
+   // ),
 // Layer template, copy paste as needed
 //    [4] = LAYOUT(
 //        XXXX,  XXXX,  XXXX,  XXXX,  XXXX,                               XXXX,  XXXX,  XXXX,  XXXX,  XXXX,
