@@ -80,37 +80,29 @@ bool caps_word_press_user(uint16_t keycode) {
 
 enum {
     BASE = 0,
-    MOD = 1,
-    NAV = 2,
-    SYM = 3,
+    NAV = 1,
+    SYM = 2,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
-        KC_Q, KC_W, KC_E, KC_R, KC_T,                                     KC_Y, KC_U, KC_I, KC_O, KC_P,
-        KC_A, KC_S, KC_D, KC_F, KC_G,                                     KC_H, KC_J, KC_K, KC_L, KC_BSPC,
+        KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
+        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_SCLN),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M, KC_COMM, KC_DOT, KC_TAB,
-                     LT(SYM, KC_ESC), LT(NAV, KC_SPC),          MO(MOD), LT(SYM, KC_ENT)
+                               LT(SYM, KC_ESC), LT(NAV, KC_SPC),          LT(NAV, KC_BSPC), LT(SYM, KC_ENT)
     ),
 
     [1] = LAYOUT(
         KC_1,     KC_2,       KC_3,       KC_4,    KC_5,                                      KC_6,       KC_7,       KC_8,       KC_9,       KC_0,
-        OSM(MOD_LGUI),  OSM(MOD_LSFT),    OSM(MOD_LALT), OSM(MOD_LCTL), ____,      ____, OSM(MOD_RCTL), OSM(MOD_LALT), OSM(MOD_RSFT), OSM(MOD_RGUI),
+        KC_LGUI,  KC_LSFT,    LALT_T(KC_LEFT),    LCTL_T(KC_RGHT),    KC_HOME,              KC_END,    RCTL_T(KC_DOWN),      LALT_T(KC_UP),   KC_RSFT,  KC_RGUI,
         KC_F1,    KC_F2,      KC_F3,      KC_F4,   KC_F5,                                     KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,
-                                                ____, ____,                               ____, ____
+                                                      ____,    ____,              QK_LAYER_LOCK, ____
     ),
 
-    [2] = LAYOUT(
-        KC_1,     KC_2,       KC_3,       KC_4,    KC_5,                                      KC_6,       KC_7,       KC_8,       KC_9,       KC_0,
-        KC_LGUI,  KC_LSFT,    LALT_T(KC_LEFT),    LCTL_T(KC_RGHT),    KC_HOME,                                   KC_END,    RCTL_T(KC_DOWN),      LALT_T(KC_UP),   KC_RSFT,  KC_RGUI,
-        ____, ____, ____, ____, ____,                                                                       ____, ____, ____, ____, ____,
-                                                      ____,    ____,              QK_LAYER_LOCK, ____
-      ),
-
    // Tap-dance so '(' on normal press and ')' on hold and '()' on double tap, and the same for '{}', '[]' and '<>'
-    [3] = LAYOUT(
-        //             å            @              #                 $          %                           *            =          +             ö           ä
-                RALT(KC_W),       KC_AT,         KC_HASH,          KC_DLR,    KC_PERC,                    KC_ASTR,     KC_EQL,    KC_PLUS, RALT(KC_O), RALT(KC_A),
+    [2] = LAYOUT(
+        //                          @              #                 $          %                           *            =          +
+                      ____,       KC_AT,         KC_HASH,          KC_DLR,    KC_PERC,                    KC_ASTR,     KC_EQL,    KC_PLUS,       ____,       ____,
         //      [ ]                < >              { }              ( )            '                       "           -           _           :           ;
             TD(TD_BRACKET),    TD(TD_ANGLE),    TD(TD_CURLY),    TD(TD_PAREN),    KC_QUOT,                KC_DQUO,    KC_MINS,    KC_UNDS,    KC_COLN,    KC_SCLN,
         //           \                                 |                &           ^                       !           ?           ,            .          /
@@ -137,10 +129,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // Combos
-const uint16_t PROGMEM switcher[] = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM switcher[] = {LCTL_T(KC_F), RCTL_T(KC_J), COMBO_END};
 const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
 //const uint16_t PROGMEM nav_lock[] = {LT(1, KC_SPC), LSFT_T(KC_BSPC), COMBO_END};
-const uint16_t PROGMEM caps_word[] = {KC_S, KC_L, COMBO_END};
+const uint16_t PROGMEM caps_word[] = {LSFT_T(KC_S), RSFT_T(KC_L), COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(switcher, LGUI(KC_H)),
