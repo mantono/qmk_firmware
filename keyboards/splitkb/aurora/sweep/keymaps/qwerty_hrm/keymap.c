@@ -93,17 +93,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
         LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_SCLN),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M, TD(TD_COMEX),  TD(TD_DOTQU), KC_SLSH,
-                               LT(NAV, KC_ESC), LT(SYM, KC_SPC),          LT(SYM, KC_BSPC), LT(NAV, KC_ENT)
+                                             KC_ESC, LT(NAV, KC_SPC),          LT(SYM, KC_BSPC), TD(TD_ENTER)
     ),
 
     [1] = LAYOUT(
         KC_1,     KC_2,       KC_3,       KC_4,    KC_5,                                      KC_6,       KC_7,       KC_8,       KC_9,       KC_0,
         KC_LGUI,  KC_LSFT,    LALT_T(KC_LEFT),    LCTL_T(KC_RGHT),    KC_HOME,              KC_END,    RCTL_T(KC_DOWN),      LALT_T(KC_UP),   KC_RSFT,  KC_RGUI,
         KC_F1,    KC_F2,      KC_F3,      KC_F4,   KC_F5,                                     KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,
-                                                      ____,    ____,              ____, ____
+                                                                    ____,    ____,    KC_TAB,  LALT(KC_TAB)
     ),
 
    // Tap-dance so '(' on normal press and ')' on hold and '()' on double tap, and the same for '{}', '[]' and '<>'
+   // Tap-dance so ' on normal press and '' on double tap with the cursor between both symbols, and same for "
     [2] = LAYOUT(
         //        0              1              2              3              4                                5              6              7              8              9
         //                       @              #              $              %                                *              +
@@ -113,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //        \              ~              |              &              ^                               [ ]            < >            , !            ? .             /
                 KC_BSLS,       KC_TILD,       KC_PIPE,       KC_AMPR,       KC_CIRC,                      TD(TD_BRACKET),TD(TD_ANGLE),     ____,          ____,          ____,
         //
-                                                                             ____,    ____,    KC_TAB,  LALT(KC_TAB)
+                                                                        ____,    ____,              ____, ____
     ),
 
 
