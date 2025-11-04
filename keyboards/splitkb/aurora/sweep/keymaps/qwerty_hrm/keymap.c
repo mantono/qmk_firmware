@@ -45,7 +45,9 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_LPRN:
         case KC_RPRN:
         case KC_QUOT:
+        case TD(TD_QUOT):
         case KC_DQUO:
+        case TD(TD_DQUO):
         case KC_LCBR:
         case KC_RCBR:
         case KC_COLN:
@@ -57,6 +59,8 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_CIRC:
         case KC_EXLM:
         case KC_QUES:
+        case TD(TD_DOTQU):
+        case TD(TD_COMEX):
         case KC_TILD:
         case KC_GRV:
             return false;  // Deactivate Caps Word.
@@ -88,27 +92,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
         LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_SCLN),
-        KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M, KC_COMM, KC_DOT, KC_TAB,
-                               LT(SYM, KC_ESC), LT(NAV, KC_SPC),          LT(NAV, KC_BSPC), LT(SYM, KC_ENT)
+        KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M, TD(TD_COMEX),  TD(TD_DOTQU), KC_SLSH,
+                               LT(NAV, KC_ESC), LT(SYM, KC_SPC),          LT(SYM, KC_BSPC), LT(NAV, KC_ENT)
     ),
 
     [1] = LAYOUT(
         KC_1,     KC_2,       KC_3,       KC_4,    KC_5,                                      KC_6,       KC_7,       KC_8,       KC_9,       KC_0,
         KC_LGUI,  KC_LSFT,    LALT_T(KC_LEFT),    LCTL_T(KC_RGHT),    KC_HOME,              KC_END,    RCTL_T(KC_DOWN),      LALT_T(KC_UP),   KC_RSFT,  KC_RGUI,
         KC_F1,    KC_F2,      KC_F3,      KC_F4,   KC_F5,                                     KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,
-                                                      ____,    ____,              QK_LAYER_LOCK, ____
+                                                      ____,    ____,              ____, ____
     ),
 
    // Tap-dance so '(' on normal press and ')' on hold and '()' on double tap, and the same for '{}', '[]' and '<>'
     [2] = LAYOUT(
-        //                          @              #                 $          %                           *            =          +
-                      ____,       KC_AT,         KC_HASH,          KC_DLR,    KC_PERC,                    KC_ASTR,     KC_EQL,    KC_PLUS,       ____,       ____,
-        //      [ ]                < >              { }              ( )            '                       "           -           _           :           ;
-            TD(TD_BRACKET),    TD(TD_ANGLE),    TD(TD_CURLY),    TD(TD_PAREN),    KC_QUOT,                KC_DQUO,    KC_MINS,    KC_UNDS,    KC_COLN,    KC_SCLN,
-        //           \                                 |                &           ^                       !           ?           ,            .          /
-                   KC_BSLS,            XXXX,         KC_PIPE,         KC_AMPR,    KC_CIRC,                KC_EXLM,    KC_QUES,    KC_COMM,     KC_DOT,    KC_SLSH,
-        //                                                              ~                                               `
-                                                                      KC_TILD,     KC_TAB,           LALT(KC_TAB),    KC_GRV
+        //        0              1              2              3              4                                5              6              7              8              9
+        //                       @              #              $              %                                *              +
+                ____,          KC_AT,         KC_HASH,       KC_DLR,        KC_PERC,                         KC_ASTR,       KC_PLUS,        ____,         ____,          ____,
+        //        `              _              -             ( )             '                                "             { }             =              :              ;
+                KC_GRV,        KC_UNDS,       KC_MINS,    TD(TD_PAREN),  TD(TD_QUOT),                     TD(TD_DQUO),   TD(TD_CURLY),     KC_EQL,        KC_COLN,       KC_SCLN,
+        //        \              ~              |              &              ^                               [ ]            < >            , !            ? .             /
+                KC_BSLS,       KC_TILD,       KC_PIPE,       KC_AMPR,       KC_CIRC,                      TD(TD_BRACKET),TD(TD_ANGLE),     ____,          ____,          ____,
+        //
+                                                                             ____,    ____,    KC_TAB,  LALT(KC_TAB)
     ),
 
 

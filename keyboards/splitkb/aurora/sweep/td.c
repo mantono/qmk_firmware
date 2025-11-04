@@ -43,6 +43,10 @@ enum {
   TD_W_AA,
   // o -> ö
   TD_O_OE,
+  // . -> ?
+  TD_DOTQU,
+  // , -> !
+  TD_COMEX,
   // enter -> ctrl + enter
   TD_ENTER,
   // ()
@@ -53,6 +57,10 @@ enum {
   TD_ANGLE,
   // []
   TD_BRACKET,
+  // ''
+  TD_QUOT,
+  // ""
+  TD_DQUO,
 };
 
 typedef enum {
@@ -126,6 +134,15 @@ static td_tap_t bracket_tap_state = {
     .state = TD_NONE
 };
 
+static td_tap_t quot_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+static td_tap_t dquo_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
 
 void paren_finished(tap_dance_state_t *state, void *user_data) {
     paren_tap_state.state = cur_dance(state);
@@ -215,15 +232,57 @@ void angle_reset(tap_dance_state_t *state, void *user_data) {
     angle_tap_state.state = TD_NONE;
 }
 
+
+void quot_finished(tap_dance_state_t *state, void *user_data) {
+    quot_tap_state.state = cur_dance(state);
+    switch (quot_tap_state.state) {
+        case TD_SINGLE_TAP: register_code16(KC_QUOT); break;
+        case TD_DOUBLE_TAP: tap_code16(KC_QUOT); tap_code16(KC_QUOT); register_code(KC_LEFT); break;
+        default: break;
+    }
+}
+
+void quot_reset(tap_dance_state_t *state, void *user_data) {
+    switch (quot_tap_state.state) {
+        case TD_SINGLE_TAP: unregister_code16(KC_QUOT); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_LEFT); break;
+        default: break;
+    }
+    quot_tap_state.state = TD_NONE;
+}
+
+
+void dquo_finished(tap_dance_state_t *state, void *user_data) {
+    dquo_tap_state.state = cur_dance(state);
+    switch (dquo_tap_state.state) {
+        case TD_SINGLE_TAP: register_code16(KC_DQUO); break;
+        case TD_DOUBLE_TAP: tap_code16(KC_DQUO); tap_code16(KC_DQUO); register_code(KC_LEFT); break;
+        default: break;
+    }
+}
+
+void dquo_reset(tap_dance_state_t *state, void *user_data) {
+    switch (dquo_tap_state.state) {
+        case TD_SINGLE_TAP: unregister_code16(KC_DQUO); break;
+        case TD_DOUBLE_TAP: unregister_code(KC_LEFT); break;
+        default: break;
+    }
+    dquo_tap_state.state = TD_NONE;
+}
+
 tap_dance_action_t tap_dance_actions[] = {
   [TD_E_AE] = ACTION_TAP_DANCE_TAP_HOLD(KC_E, RALT(KC_A)),
   [TD_W_AA] = ACTION_TAP_DANCE_TAP_HOLD(KC_W, RALT(KC_W)),
   [TD_O_OE] = ACTION_TAP_DANCE_TAP_HOLD(KC_O, RALT(KC_O)),
+  [TD_DOTQU] = ACTION_TAP_DANCE_TAP_HOLD(KC_DOT, KC_QUES),
+  [TD_COMEX] = ACTION_TAP_DANCE_TAP_HOLD(KC_COMM, KC_EXLM),
   [TD_ENTER] = ACTION_TAP_DANCE_TAP_HOLD(KC_ENT, LCTL(KC_ENT)),
   [TD_PAREN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, paren_finished, paren_reset),
   [TD_CURLY] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, curly_finished, curly_reset),
   [TD_BRACKET] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, bracket_finished, bracket_reset),
   [TD_ANGLE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, angle_finished, angle_reset),
+  [TD_QUOT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, quot_finished, quot_reset),
+  [TD_DQUO] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dquo_finished, dquo_reset),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -234,6 +293,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TD(TD_W_AA):
         case TD(TD_O_OE):
         case TD(TD_ENTER):
+        case TD(TD_DOTQU):
+        case TD(TD_COMEX):
             action = &tap_dance_actions[QK_TAP_DANCE_GET_INDEX(keycode)];
             if (!record->event.pressed && action->state.count && !action->state.finished) {
                 tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
