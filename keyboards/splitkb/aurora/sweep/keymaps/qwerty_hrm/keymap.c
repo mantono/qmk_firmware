@@ -85,9 +85,9 @@ enum {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
-        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_SCLN),
+        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_ENT),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
-                                    LT(NAV, KC_ESC), LT(SYM, KC_SPC),          LT(SYM, KC_BSPC), LT(NAV, KC_ENT)
+                                    LT(NAV, KC_ESC), LT(SYM, KC_SPC),          LT(SYM, KC_BSPC), KC_TAB
     ),
 
     [1] = LAYOUT(
@@ -143,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //        \              ~              |             ( )            [ ]                              < >            { }            ,                .             /
                 KC_BSLS,       KC_TILD,       KC_PIPE,    TD(TD_PAREN),  TD(TD_BRACKET),                  TD(TD_ANGLE),  TD(TD_CURLY),     ____,           ____,         ____,
         //
-                                                                    ____,    ____,    KC_TAB,  LALT(KC_TAB)
+                                                                    ____,    ____,                ____,       ____
     ),
 
 
