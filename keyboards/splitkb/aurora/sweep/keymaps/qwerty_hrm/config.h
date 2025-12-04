@@ -64,13 +64,13 @@
 #define NO_AUTO_SHIFT_SPECIAL
 
 // Do not Auto Shift numeric keys, zero through nine.
-//#define NO_AUTO_SHIFT_NUMERIC
+#define NO_AUTO_SHIFT_NUMERIC
 
 // Do not Auto Shift alpha characters, which include A through Z.
 #define NO_AUTO_SHIFT_ALPHA
 
 // Tapping this number of times holds the key until tapped once again.
-#define ONESHOT_TAP_TOGGLE 5
+#define ONESHOT_TAP_TOGGLE 2
 
 // Time (in ms) before the one shot key is released
 #define ONESHOT_TIMEOUT 5000

@@ -80,21 +80,22 @@ enum {
     BASE = 0,
     NAV = 1,
     SYM = 2,
+    NUM = 3,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
-        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_ENT),
+        LT(SYM, KC_A), LGUI_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RGUI_T(KC_L), LT(SYM, KC_ENT),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
-                                    LT(NAV, KC_ESC), LT(SYM, KC_SPC),          LT(SYM, KC_BSPC), KC_TAB
+                                         KC_ESC, LT(NAV, KC_SPC),         OSM(MOD_LSFT), KC_TAB
     ),
 
     [1] = LAYOUT(
         KC_F1,    KC_F2,      KC_F3,      KC_F4,   KC_F5,                                     KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,
-        KC_LGUI,  KC_LSFT,    LALT_T(KC_LEFT),    LCTL_T(KC_RGHT),    KC_HOME,              KC_END,    RCTL_T(KC_DOWN),      LALT_T(KC_UP),   KC_RSFT,  KC_RGUI,
-        KC_F11,   KC_F12,     XXXX,        XXXX,    XXXX,                                      XXXX,       XXXX,       XXXX,       XXXX,       XXXX,
-                                                                        ____,    ____,              ____, ____
+        KC_LGUI,  KC_LSFT,    LALT_T(KC_LEFT),    LCTL_T(KC_RGHT),    KC_DEL,              KC_BSPC,    RCTL_T(KC_DOWN),      LALT_T(KC_UP),   KC_RSFT,  KC_RGUI,
+        KC_F11,   KC_F12,     KC_HOME,        KC_END,    XXXX,                                XXXX,       KC_PGUP,       KC_PGDN,       XXXX,       XXXX,
+                                                                        ____,    ____,         ____, ____
     ),
 
 
@@ -135,15 +136,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    // Tap-dance so ' on normal press and '' on double tap with the cursor between both symbols, and same for "
    // Auto-shift digits so we can get the corresponding symbol for each digit
     [2] = LAYOUT(
-        //        1              2              3              4              5                                6              7              8              9              0
         //        !              @              #              $              %                                ^              &              *              (              )
-                KC_1,          KC_2,          KC_3,          KC_4,          KC_5,                            KC_6,          KC_7,          KC_8,          KC_9,          KC_0,
+                KC_EXLM,       KC_AT,         KC_HASH,       KC_DLR,        KC_PERC,                         KC_CIRC,       KC_AMPR,       KC_ASTR,       KC_LPRN,       KC_RPRN,
         //        `              +              -              =              '                                "              :              _              ?              ;
                 KC_GRV,        KC_PLUS,       KC_MINS,       KC_EQL,     TD(TD_QUOT),                     TD(TD_DQUO),      KC_COLN,       KC_UNDS,       KC_QUES,       KC_SCLN,
         //        \              ~              |             ( )            [ ]                              < >            { }            ,                .             /
                 KC_BSLS,       KC_TILD,       KC_PIPE,    TD(TD_PAREN),  TD(TD_BRACKET),                  TD(TD_ANGLE),  TD(TD_CURLY),     ____,           ____,         ____,
         //
                                                                     ____,    ____,                ____,       ____
+    ),
+
+    [3] = LAYOUT(
+         ____,  ____,  ____,  ____,  ____,         ____,  ____,  ____,  ____,  ____,
+         KC_1,  KC_2,  KC_3,  KC_4,  KC_5,         KC_6,  KC_7,  KC_8,  KC_9,  KC_0,
+         ____,  ____,  ____,  ____,  ____,         ____,  ____,  ____,  ____,  ____,
+                              ____,  ____,         ____,   ____
     ),
 
 
@@ -166,14 +173,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Combos
 const uint16_t PROGMEM switcher[] = {LCTL_T(KC_F), RCTL_T(KC_J), COMBO_END};
 const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
+const uint16_t PROGMEM num[] = {LT(NAV, KC_SPC), OSM(MOD_LSFT), COMBO_END};
 //const uint16_t PROGMEM nav_lock[] = {LT(1, KC_SPC), LSFT_T(KC_BSPC), COMBO_END};
-const uint16_t PROGMEM caps_word[] = {LSFT_T(KC_S), RSFT_T(KC_L), COMBO_END};
+//const uint16_t PROGMEM caps_word[] = {LSFT_T(KC_S), RSFT_T(KC_L), COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(switcher, LGUI(KC_H)),
     COMBO(launcher, LGUI(KC_G)), // keycodes with modifiers are possible too!
+    COMBO(num, MO(NUM)),
   //COMBO(nav_lock, TG(1)),
-    COMBO(caps_word, QK_CAPS_WORD_TOGGLE)
+  //  COMBO(caps_word, QK_CAPS_WORD_TOGGLE)
 };
 
 #ifdef OTHER_KEYMAP_C
