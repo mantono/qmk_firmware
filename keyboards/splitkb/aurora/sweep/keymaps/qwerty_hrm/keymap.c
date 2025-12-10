@@ -136,12 +136,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    // Tap-dance so ' on normal press and '' on double tap with the cursor between both symbols, and same for "
    // Auto-shift digits so we can get the corresponding symbol for each digit
     [2] = LAYOUT(
-        //        !              @              #              $              %                                ^              &              *              (              )
-                KC_EXLM,       KC_AT,         KC_HASH,       KC_DLR,        KC_PERC,                         KC_CIRC,       KC_AMPR,       KC_ASTR,       KC_LPRN,       KC_RPRN,
-        //        `              +              -              =              '                                "              :              _              ?              ;
-                KC_GRV,        KC_PLUS,       KC_MINS,       KC_EQL,     TD(TD_QUOT),                     TD(TD_DQUO),      KC_COLN,       KC_UNDS,       KC_QUES,       KC_SCLN,
-        //        \              ~              |             ( )            [ ]                              < >            { }            ,                .             /
-                KC_BSLS,       KC_TILD,       KC_PIPE,    TD(TD_PAREN),  TD(TD_BRACKET),                  TD(TD_ANGLE),  TD(TD_CURLY),     ____,           ____,         ____,
+        //        !              @             < >            { }             '                                ^              &              *              (              )
+                KC_EXLM,       KC_AT,      TD(TD_ANGLE),  TD(TD_CURLY),  TD(TD_QUOT),                        KC_CIRC,       KC_AMPR,       KC_ASTR,       KC_LPRN,       KC_RPRN,
+        //        `              +              -              =              "                                $              :              _              ?              ;
+                KC_GRV,        KC_PLUS,       KC_MINS,       KC_EQL,     TD(TD_DQUO),                        KC_DLR,        KC_COLN,       KC_UNDS,       KC_QUES,       KC_SCLN,
+        //        \              ~              |             ( )            [ ]                               %              #              ,                .             /
+                KC_BSLS,       KC_TILD,       KC_PIPE,    TD(TD_PAREN),  TD(TD_BRACKET),                     KC_PERC,       KC_HASH,        ____,           ____,         ____,
         //
                                                                     ____,    MO(NUM),                ____,       ____
     ),
