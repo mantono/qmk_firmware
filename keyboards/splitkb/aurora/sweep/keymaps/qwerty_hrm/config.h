@@ -41,14 +41,23 @@
 #define DETECT_USB_SPLIT
 #define SPLIT_USB_DETECT
 
-// Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 180
+#define TAPPING_TERM 300
 
-// Disable PERMISSIVE_HOLD since it does not quite suite my style of typings, see
 // https://docs.qmk.fm/tap_hold#permissive-hold
-//#define PERMISSIVE_HOLD
+// If you press a dual-role key, tap another key (press and release) and then release the dual-role key, all within the tapping term, by default the dual-role key will perform its tap action. If the PERMISSIVE_HOLD option is enabled, the dual-role key will perform its hold action instead.
+// This becomes very powerful together with a longer TAPPING_TERM.
+#define PERMISSIVE_HOLD
+
+// https://docs.qmk.fm/tap_hold#flow-tap
+// Flow Tap modifies mod-tap MT and layer-tap LT keys such that when pressed within a short timeout of the preceding key, the tapping behavior is triggered. This is particularly useful for home row mods to avoid accidental mod triggers. It basically disables the hold behavior during fast typing, creating a "flow of taps." This also helps to reduce the input lag of tap-hold keys during fast typing, since the tapped behavior is sent immediately.
+#define FLOW_TAP_TERM 150
+
+// https://docs.qmk.fm/tap_hold#speculative-hold
+// Speculative Hold makes mod-tap keys more responsive by applying the modifier instantly on keydown, before the tap-hold decision is made. This is especially useful for actions like Shift+Click with a mouse, which can feel laggy with standard mod-taps.
+#define SPECULATIVE_HOLD
 
 // https://docs.qmk.fm/tap_hold#quick-tap-term
+// When the user holds a key after tapping it, the tapping function is repeated by default, rather than activating the hold function. This allows keeping the ability to auto-repeat the tapping function of a dual-role key. QUICK_TAP_TERM enables fine tuning of that ability. If set to 0, it will remove the auto-repeat ability and activate the hold function instead.
 #define QUICK_TAP_TERM 150
 
 // https://docs.qmk.fm/tap_hold#retro-tapping
