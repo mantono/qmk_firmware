@@ -5,11 +5,7 @@ KEYBOARD=$1
 # Like "default", "debug", "qwerty_dfjk" or somethinge else
 KEYMAP=$2
 
-qmk --version || nix-shell
-#qmk compile -kb ferris/sweep -km $KEYMAP -e CONVERT_TO=liatris || exit 1
-rm -frv *.uf2
-qmk compile -kb $KEYBOARD -km $KEYMAP -e CONVERT_TO=liatris || exit 1
-echo "Firmware compiled."
+./build.sh $KEYBOARD $KEYMAP
 echo "Please enter password for sudo."
 sudo -v
 

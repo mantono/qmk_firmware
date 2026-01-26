@@ -295,8 +295,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TD(TD_ENTER):
         case TD(TD_DOTQU):
         case TD(TD_COMEX):
-            action = &tap_dance_actions[QK_TAP_DANCE_GET_INDEX(keycode)];
-            if (!record->event.pressed && action->state.count && !action->state.finished) {
+            ;
+            uint8_t td_index = QK_TAP_DANCE_GET_INDEX(keycode);
+            action = &tap_dance_actions[td_index];
+            tap_dance_state_t *state = tap_dance_get_state(td_index);
+            if (!record->event.pressed && state != NULL && state->count && !state->finished) {
                 tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
                 tap_code16(tap_hold->tap);
             }
