@@ -45,6 +45,8 @@ enum {
   TD_COMEX,
   // enter -> ctrl + enter
   TD_ENTER,
+  // delete -> backspace
+  TD_REMOVE,
   // ()
   TD_PAREN,
   // {}
@@ -273,6 +275,7 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_DOTQU] = ACTION_TAP_DANCE_TAP_HOLD(KC_DOT, KC_QUES),
   [TD_COMEX] = ACTION_TAP_DANCE_TAP_HOLD(KC_COMM, KC_EXLM),
   [TD_ENTER] = ACTION_TAP_DANCE_TAP_HOLD(KC_ENT, LCTL(KC_ENT)),
+  [TD_REMOVE] = ACTION_TAP_DANCE_TAP_HOLD(KC_DEL, KC_BSPC),
   [TD_PAREN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, paren_finished, paren_reset),
   [TD_CURLY] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, curly_finished, curly_reset),
   [TD_BRACKET] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, bracket_finished, bracket_reset),

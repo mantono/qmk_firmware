@@ -56,7 +56,7 @@
 // useful for home row mods to avoid accidental mod triggers. It basically disables the hold
 // behavior during fast typing, creating a "flow of taps." This also helps to reduce the input
 // lag of tap-hold keys during fast typing, since the tapped behavior is sent immediately.
-#define FLOW_TAP_TERM 150
+#define FLOW_TAP_TERM 120
 
 // https://docs.qmk.fm/tap_hold#speculative-hold
 // Speculative Hold makes mod-tap keys more responsive by applying the modifier instantly

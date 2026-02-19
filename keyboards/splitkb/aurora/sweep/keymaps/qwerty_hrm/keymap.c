@@ -17,6 +17,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case TD(TD_E_AE):
         case TD(TD_W_AA):
         case TD(TD_O_OE):
+        case TD(TD_REMOVE):
         case RALT(KC_A):
         case RALT(KC_W):
         case RALT(KC_O):
@@ -77,7 +78,7 @@ bool is_flow_tap_key(uint16_t keycode) {
         return false; // Disable Flow Tap on hotkeys.
     }
     switch (get_tap_keycode(keycode)) {
-        case KC_SPC:
+        //case KC_SPC:
         case KC_A ... KC_Z:
         case KC_DOT:
         case KC_COMM:
@@ -105,16 +106,16 @@ enum {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
-        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_ENT),
+        LT(NUM, KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), TD_ENTER,
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
-                                         KC_ESC, LT(NAV, KC_SPC),         LT(SYM, KC_TAB), TG(NAV)
+                                         KC_ESC, LGUI_T(KC_SPC),         LT(SYM, KC_TAB), TT(NAV)
     ),
 
     [1] = LAYOUT(
         KC_F1,    KC_F2,      KC_F3,      KC_F4,   KC_F5,                                     KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,
         KC_LGUI,  KC_LSFT,    LALT_T(KC_LEFT),    LCTL_T(KC_RGHT),    KC_DEL,              KC_BSPC,    RCTL_T(KC_DOWN),      LALT_T(KC_UP),   KC_RSFT,  KC_RGUI,
-        KC_F11,   KC_F12,     KC_HOME,        KC_END,    XXXX,                                XXXX,       KC_PGUP,       KC_PGDN,       XXXX,       XXXX,
-                                                                    TG(NAV),    ____,         LT(NUM,  KC_TAB), ____
+        KC_F11,   KC_F12,     KC_HOME,        KC_END,    XXXX,                                XXXX,       KC_PGDN,       KC_PGUP,       XXXX,       XXXX,
+                                                                    TG(NAV),    ____,         KC_TAB, ____
     ),
 
 
