@@ -92,32 +92,6 @@ bool is_flow_tap_key(uint16_t keycode) {
     return false;
 }
 
-enum custom_keycodes {
-    WORD_LEFT = SAFE_RANGE,
-    WORD_RIGHT,
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  switch (keycode) {
-    case WORD_LEFT:
-      if (record->event.pressed) {
-        TODO
-      }
-      return false;
-    case WORD_RIGHT:
-      if (record->event.pressed) {
-        TODO
-      }
-      return false;
-    case SELLINE:  // Selects the current line.
-      if (record->event.pressed) {
-        SEND_STRING(SS_TAP(X_HOME) SS_LSFT(SS_TAP(X_END)));
-      }
-      return false;
-  }
-  return true;
-}
-
 // Aliases
 #define XXXX KC_NO
 #define ____ KC_TRNS
@@ -138,8 +112,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [1] = LAYOUT(
           ____,  ____,  LCTL(KC_X),   KC_BSPC,  ____,                             LCTL(KC_C),  LCTL(KC_Z),  TG(NAV),  ____,  LCTL(KC_V),
-          ____,  ____,  WORD_LEFT,  WORD_RIGHT,  ____,          KC_LEFT,  KC_DOWN,  KC_UP, KC_RGHT,  ____,
-          XXXX,  SELLINE,  KC_HOME,   KC_END,    XXXX,                      XXXX,   KC_PGDN   KC_PGUP,       XXXX,       XXXX,
+          ____,  ____,  WORD_LEFT,  WORD_RIGHT,  ____,                      KC_LEFT,  KC_DOWN,  KC_UP, KC_RGHT,  ____,
+          XXXX,  SELLINE,  KC_HOME,   KC_END,    XXXX,                      XXXX,   KC_PGDN,   KC_PGUP,       XXXX,       XXXX,
                               ____,  ____,                               ____,  ____
     ),
 

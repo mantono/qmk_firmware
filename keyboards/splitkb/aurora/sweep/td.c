@@ -284,6 +284,12 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_DQUO] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dquo_finished, dquo_reset),
 };
 
+enum custom_keycodes {
+    WORD_LEFT = SAFE_RANGE,
+    WORD_RIGHT,
+    SELLINE,
+};
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     tap_dance_action_t *action;
 
@@ -302,6 +308,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
                 tap_code16(tap_hold->tap);
             }
+        case WORD_LEFT:
+          if (record->event.pressed) {
+            tap_code16(KC_LEFT);               // Collapse selection, move left
+            tap_code16(LCTL(LSFT(KC_LEFT)));   // Select previous word
+          }
+          return false;
+        case WORD_RIGHT:
+          if (record->event.pressed) {
+            tap_code16(KC_RIGHT);              // Collapse selection, move right
+            tap_code16(LCTL(LSFT(KC_RIGHT)));  // Select next word
+          }
+          return false;
+        case SELLINE:  // Selects the current line.
+          if (record->event.pressed) {
+            SEND_STRING(SS_TAP(X_HOME) SS_LSFT(SS_TAP(X_END)));
+          }
+          return false;
     }
     return true;
 }
