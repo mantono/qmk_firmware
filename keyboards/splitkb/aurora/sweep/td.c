@@ -308,6 +308,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
                 tap_code16(tap_hold->tap);
             }
+            break;
         case WORD_LEFT:
           if (record->event.pressed) {
             tap_code16(KC_LEFT);               // Collapse selection, move left
