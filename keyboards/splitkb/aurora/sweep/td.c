@@ -288,6 +288,8 @@ enum custom_keycodes {
     WORD_LEFT = SAFE_RANGE,
     WORD_RIGHT,
     SELLINE,
+    ARROW,      // ->
+    FAT_ARROW,  // =>
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -324,6 +326,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case SELLINE:  // Selects the current line.
           if (record->event.pressed) {
             SEND_STRING(SS_TAP(X_HOME) SS_LSFT(SS_TAP(X_END)));
+          }
+          return false;
+        case ARROW:
+          if (record->event.pressed) {
+            SEND_STRING("->");
+          }
+          return false;
+        case FAT_ARROW:
+          if (record->event.pressed) {
+            SEND_STRING("=>");
           }
           return false;
     }

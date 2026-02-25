@@ -173,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //        \              ~              |             ( )            [ ]                               #              1           2           3           *
                 KC_BSLS,       KC_TILD,       KC_PIPE,    TD(TD_PAREN),  TD(TD_BRACKET),                     KC_HASH,       KC_1,       KC_2,       KC_3,       KC_ASTR,
         //                                                          ->              :                                        =>
-                                                                  ____,         KC_COLN,                     ____,          ____
+                                                                  ARROW,        KC_COLN,                     ____,          FAT_ARROW
     )
 
 
