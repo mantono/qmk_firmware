@@ -92,6 +92,18 @@ bool is_flow_tap_key(uint16_t keycode) {
     return false;
 }
 
+bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+    switch(keycode) {
+        case KC_MINS:
+        case KC_4:
+        case KC_5:
+        case KC_6:
+            return true;
+        default:
+            return false;
+    }
+}
+
 // Aliases
 #define XXXX KC_NO
 #define ____ KC_TRNS
@@ -105,14 +117,14 @@ enum {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
-        LT(SYM, KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), LT(SYM, KC_ENT),
+        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_ENT),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
-                                         KC_ESC, LGUI_T(KC_SPC),         TT(NAV), KC_TAB
+                                         KC_ESC, LT(NAV, KC_SPC),          OSL(SYM), KC_TAB
     ),
 
     [1] = LAYOUT(
-          ____,  ____,  LCTL(KC_X),   KC_BSPC,  ____,                             LCTL(KC_C),  LCTL(KC_Z),  TG(NAV),  ____,  LCTL(KC_V),
-          ____,  ____,  WORD_LEFT,  WORD_RIGHT,  ____,                      KC_LEFT,  KC_DOWN,  KC_UP, KC_RGHT,  ____,
+          XXXX,  XXXX,  KC_DEL, XXXX,  XXXX,                             LCTL(KC_C),  LCTL(KC_Z),  XXXX,  XXXX,  LCTL(KC_V),
+          XXXX,  KC_LSFT,  LCTL(KC_LEFT),  LCTL(KC_RGHT),  XXXX,                      KC_LEFT,  KC_DOWN,  KC_UP, KC_RGHT,  KC_BSPC,
           XXXX,  SELLINE,  KC_HOME,   KC_END,    XXXX,                      XXXX,   KC_PGDN,   KC_PGUP,       XXXX,       XXXX,
                               ____,  ____,                               ____,  ____
     ),
@@ -154,14 +166,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    // Tap-dance so ' on normal press and '' on double tap with the cursor between both symbols, and same for "
    // Auto-shift digits so we can get the corresponding symbol for each digit
     [2] = LAYOUT(
-        //        !              @             < >            { }             '                                ^              7           8           9           ?
-                KC_EXLM,       KC_AT,      TD(TD_ANGLE),  TD(TD_CURLY),  TD(TD_QUOT),                        KC_CIRC,       KC_7,       KC_8,       KC_9,       KC_QUES,
-        //        `              +              -              =              "                                $              4           5           6           ;
-                KC_GRV,        KC_PLUS,       KC_MINS,       KC_EQL,     TD(TD_DQUO),                        KC_DLR,        KC_4,       KC_5,       KC_6,       KC_SCLN,
-        //        \              ~              |             ( )            [ ]                               %              1           2           3           *
-                KC_BSLS,       KC_TILD,       KC_PIPE,    TD(TD_PAREN),  TD(TD_BRACKET),                     KC_PERC,       KC_1,       KC_2,       KC_3,       KC_ASTR,
-        //                                                           &          :                              #              0
-                                                                    KC_AMPR,    KC_COLN,                     KC_HASH,       KC_0
+        //        !              @             < >            { }             '                                ^              7           8           9           0
+                KC_EXLM,       KC_AT,      TD(TD_ANGLE),  TD(TD_CURLY),  TD(TD_QUOT),                        KC_CIRC,       KC_7,       KC_8,       KC_9,       KC_0,
+        //        `              +             - _             =              "                                ?             4 $         5 %         6 &          ;
+                KC_GRV,        KC_PLUS,       KC_MINS,       KC_EQL,     TD(TD_DQUO),                        KC_QUES,       KC_4,       KC_5,       KC_6,       KC_SCLN,
+        //        \              ~              |             ( )            [ ]                               #              1           2           3           *
+                KC_BSLS,       KC_TILD,       KC_PIPE,    TD(TD_PAREN),  TD(TD_BRACKET),                     KC_HASH,       KC_1,       KC_2,       KC_3,       KC_ASTR,
+        //                                                          ->              :                                        =>
+                                                                  ____,         KC_COLN,                     ____,          ____
     )
 
 
