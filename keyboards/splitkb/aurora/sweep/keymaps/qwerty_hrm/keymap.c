@@ -112,6 +112,7 @@ enum {
     BASE = 0,
     NAV = 1,
     SYM = 2,
+    NUM = 3,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -119,13 +120,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
         LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_ENT),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
-                                         KC_ESC, LT(NAV, KC_SPC),          OSL(SYM), KC_TAB
+                                         KC_ESC, LT(NAV, KC_SPC),          LT(SYM, KC_TAB), LT(NUM, KC_BSPC)
     ),
 
     [1] = LAYOUT(
           XXXX,  XXXX,  KC_DEL, XXXX,  XXXX,                             LCTL(KC_C),  LCTL(KC_Z),  XXXX,  XXXX,  LCTL(KC_V),
           XXXX,  KC_LSFT,  LCTL(KC_LEFT),  LCTL(KC_RGHT),  XXXX,                      KC_LEFT,  KC_DOWN,  KC_UP, KC_RGHT,  KC_BSPC,
-          XXXX,  SELLINE,  KC_HOME,   KC_END,    XXXX,                      XXXX,   KC_PGDN,   KC_PGUP,       XXXX,       XXXX,
+          XXXX,  SELLINE,  KC_HOME,   KC_END,    XXXX,                      XXXX,   KC_PGDN,   KC_PGUP,       XXXX,       ____,
                               ____,  ____,                               ____,  ____
     ),
 
@@ -166,16 +167,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    // Tap-dance so ' on normal press and '' on double tap with the cursor between both symbols, and same for "
    // Auto-shift digits so we can get the corresponding symbol for each digit
     [2] = LAYOUT(
-        //        !              @             < >            { }             '                                ^              7           8           9           0
-                KC_EXLM,       KC_AT,      TD(TD_ANGLE),  TD(TD_CURLY),  TD(TD_QUOT),                        KC_CIRC,       KC_7,       KC_8,       KC_9,       KC_0,
-        //        `              +             - _             =              "                                ?             4 $         5 %         6 &          ;
-                KC_GRV,        KC_PLUS,       KC_MINS,       KC_EQL,     TD(TD_DQUO),                        KC_QUES,       KC_4,       KC_5,       KC_6,       KC_SCLN,
-        //        \              ~              |             ( )            [ ]                               #              1           2           3           *
-                KC_BSLS,       KC_TILD,       KC_PIPE,    TD(TD_PAREN),  TD(TD_BRACKET),                     KC_HASH,       KC_1,       KC_2,       KC_3,       KC_ASTR,
-        //                                                          ->              :                                        =>
-                                                                  ARROW,        KC_COLN,                     ____,          FAT_ARROW
-    )
+        //        !              @             < >            { }             '                                ^              &              *              ->             =>
+                KC_EXLM,       KC_AT,      TD(TD_ANGLE),  TD(TD_CURLY),  TD(TD_QUOT),                        KC_CIRC,       KC_AMPR,       KC_ASTR,        ARROW,      FAT_ARROW,
+        //        `              +              -              =              "                                $              :              _              ?              ;
+                KC_GRV,        KC_PLUS,       KC_MINS,       KC_EQL,     TD(TD_DQUO),                        KC_DLR,        KC_COLN,       KC_UNDS,       KC_QUES,       KC_SCLN,
+        //        \              ~              |             ( )            [ ]                               %              #              ,                .             /
+                KC_BSLS,       KC_TILD,       KC_PIPE,    TD(TD_PAREN),  TD(TD_BRACKET),                     KC_PERC,       KC_HASH,        ____,           ____,        KC_SLSH,
+                                                                    ____,    ____,                ____,       ____
+    ),
 
+    [3] = LAYOUT(
+         ____,  ____,  ____,  ____,  ____,         ____,  ____,  ____,  ____,  ____,
+         KC_1,  KC_2,  KC_3,  KC_4,  KC_5,         KC_6,  KC_7,  KC_8,  KC_9,  KC_0,
+         ____,  ____,  ____,  ____,  ____,         ____,  ____,  ____,  ____,  ____,
+                              ____,  ____,         ____,   ____
+    ),
 
 // Layer template, copy paste as needed
 //    [4] = LAYOUT(
