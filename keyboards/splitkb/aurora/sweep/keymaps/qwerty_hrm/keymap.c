@@ -118,14 +118,14 @@ enum {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
-        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_SCLN),
+        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), TD(TD_ENTER),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
                                          KC_ESC, LT(NAV, KC_SPC),          LT(SYM, KC_TAB), MO(NUM)
     ),
 
     [1] = LAYOUT(
           KC_F1,    KC_F2,      KC_F3,      KC_F4,   KC_F5,                                     KC_F6,      KC_F7,      KC_F8,      KC_F9,     KC_F10,
-          KC_LGUI,  KC_LSFT,  LALT_T(KC_LEFT),  LCTL_T(KC_RGHT),  KC_DEL,                      KC_BSPC,  RCTL_T(KC_DOWN),  LALT_T(KC_UP), KC_RSFT, TD(TD_ENTER),
+          KC_LGUI,  KC_LSFT,  LALT_T(KC_LEFT),  LCTL_T(KC_RGHT),  KC_DEL,                      KC_BSPC,  RCTL_T(KC_DOWN),  LALT_T(KC_UP), KC_RSFT, ____,
           KC_F11,  SELLINE,  KC_HOME,   KC_END,    XXXX,                      XXXX,   KC_PGDN,   KC_PGUP,       XXXX,       KC_F12,
                               ____,  ____,                               ____,  ____
     ),
