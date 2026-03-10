@@ -95,9 +95,6 @@ bool is_flow_tap_key(uint16_t keycode) {
 bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
         case KC_MINS:
-        case KC_4:
-        case KC_5:
-        case KC_6:
             return true;
         default:
             return false;
