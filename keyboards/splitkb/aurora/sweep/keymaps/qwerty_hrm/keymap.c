@@ -117,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
         LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), TD(TD_ENTER),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
-                                         KC_ESC, LT(NAV, KC_SPC),          LT(SYM, KC_TAB), LT(FUNC, QK_CAPS_WORD_TOGGLE)
+                                         LSFT_T(KC_ESC), LT(NAV, KC_SPC),          LT(SYM, KC_TAB), OS_LSFT
     ),
 
     [1] = LAYOUT(
@@ -193,7 +193,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Combos
 const uint16_t PROGMEM switcher[] = {LCTL_T(KC_F), RCTL_T(KC_J), COMBO_END};
 const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
-const uint16_t PROGMEM caps_word[] = {LSFT_T(KC_S), RSFT_T(KC_L), COMBO_END};
+const uint16_t PROGMEM caps_word[] = {LSFT_T(KC_ESC), LT(NAV, KC_SPC), COMBO_END};
 //const uint16_t PROGMEM nav_lock[] = {LT(1, KC_SPC), LSFT_T(KC_BSPC), COMBO_END};
 
 combo_t key_combos[] = {
