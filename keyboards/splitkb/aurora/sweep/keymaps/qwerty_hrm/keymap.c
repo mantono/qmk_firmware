@@ -109,15 +109,16 @@ enum {
     BASE = 0,
     NAV = 1,
     SYM = 2,
-    FUNC = 3,
+    MOD = 3,
+    FUNC = 4
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
-        KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                     KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
-        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,      KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), TD(TD_ENTER),
-        KC_Z, KC_X, KC_C, KC_V, KC_B,                                     KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
-                                         LSFT_T(KC_ESC), LT(NAV, KC_SPC),          LT(SYM, KC_TAB), OS_LSFT
+        KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
+        KC_A, KC_S, KC_D, LT(SYM, KC_F), KC_G,                           KC_H, LT(SYM, KC_J), KC_K, KC_L, TD(TD_ENTER),
+        KC_Z, KC_X, KC_C, KC_V, KC_B,                                           KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
+                            LSFT_T(KC_ESC), LT(NAV, KC_SPC),          OSL(MOD), LSFT_T(KC_TAB)
     ),
 
     [1] = LAYOUT(
@@ -173,7 +174,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                     ____,    ____,                ____,       ____
     ),
 
-    [3] = LAYOUT(
+    [4] = LAYOUT(
+            KC_1,  KC_2,  KC_3,  KC_4,  KC_5,                                                  KC_6,  KC_7,  KC_8,  KC_9,  KC_0,
+          KC_LGUI,  KC_LSFT,  KC_LALT,  KC_LCTL,  KC_DEL,                         KC_BSPC,  KC_RCTL,  KC_LALT, KC_RSFT, KC_RGUI,
+          XXXX,  SELLINE,  KC_HOME,   KC_END,    XXXX,                       XXXX,   KC_PGDN,   KC_PGUP,       XXXX,       XXXX,
+                              ____,  ____,                               ____,  ____
+    ),
+
+    [4] = LAYOUT(
          ____,  ____,  ____,  ____,  ____,         ____,  ____,  ____,  ____,  ____,
         LGUI_T(KC_F1),  LSFT_T(KC_F2),  LALT_T(KC_F3),  LCTL_T(KC_F4),  KC_F5,         KC_F6,  RCTL_T(KC_F7),  LALT_T(KC_F8), RSFT_T(KC_F9),  RGUI_T(KC_F10),
          KC_F11,  KC_F12,  ____,  ____,  ____,         ____,  ____,  ____,  ____,  ____,
@@ -191,9 +199,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // Combos
-const uint16_t PROGMEM switcher[] = {LCTL_T(KC_F), RCTL_T(KC_J), COMBO_END};
+const uint16_t PROGMEM switcher[] = {LT(SYM, KC_F), LT(SYM, KC_J), COMBO_END};
 const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
-const uint16_t PROGMEM caps_word[] = {LSFT_T(KC_ESC), LT(NAV, KC_SPC), COMBO_END};
+const uint16_t PROGMEM caps_word[] = {LSFT_T(KC_ESC), LSFT_T(KC_TAB), COMBO_END};
 //const uint16_t PROGMEM nav_lock[] = {LT(1, KC_SPC), LSFT_T(KC_BSPC), COMBO_END};
 
 combo_t key_combos[] = {
