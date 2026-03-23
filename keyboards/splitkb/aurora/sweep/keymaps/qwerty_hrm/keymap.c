@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
         KC_A, KC_S, KC_D, LT(SYM, KC_F), KC_G,                           KC_H, LT(SYM, KC_J), KC_K, KC_L, TD(TD_ENTER),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                           KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
-                            LSFT_T(KC_ESC), LT(NAV, KC_SPC),          OSL(MOD), LSFT_T(KC_TAB)
+                            LSFT_T(KC_ESC), LT(NAV, KC_SPC),          MO(MOD), LSFT_T(KC_TAB)
     ),
 
     [1] = LAYOUT(
@@ -174,9 +174,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                     ____,    ____,                ____,       ____
     ),
 
-    [4] = LAYOUT(
+    [3] = LAYOUT(
             KC_1,  KC_2,  KC_3,  KC_4,  KC_5,                                                  KC_6,  KC_7,  KC_8,  KC_9,  KC_0,
-          KC_LGUI,  KC_LSFT,  KC_LALT,  KC_LCTL,  KC_DEL,                         KC_BSPC,  KC_RCTL,  KC_LALT, KC_RSFT, KC_RGUI,
+          OS_LGUI,  OS_LSFT,  OS_LALT,  OS_LCTL,  KC_DEL,                         KC_BSPC,  OS_RCTL,  OS_LALT, OS_RSFT, OS_RGUI,
           XXXX,  SELLINE,  KC_HOME,   KC_END,    XXXX,                       XXXX,   KC_PGDN,   KC_PGUP,       XXXX,       XXXX,
                               ____,  ____,                               ____,  ____
     ),
