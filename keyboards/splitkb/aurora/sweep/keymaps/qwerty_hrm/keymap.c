@@ -194,15 +194,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Combos
 const uint16_t PROGMEM switcher[] = {LT(SYM, KC_F), LT(SYM, KC_J), COMBO_END};
 const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
-const uint16_t PROGMEM caps_word[] = {LSFT_T(KC_ESC), LSFT_T(KC_TAB), COMBO_END};
-//const uint16_t PROGMEM nav_lock[] = {LT(1, KC_SPC), LSFT_T(KC_BSPC), COMBO_END};
+const uint16_t PROGMEM caps_word[] = {LT(NAV, KC_SPC), LSFT_T(KC_TAB), COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(switcher, LGUI(KC_H)),
     COMBO(launcher, LGUI(KC_G)), // keycodes with modifiers are possible too!
     COMBO(caps_word, QK_CAPS_WORD_TOGGLE)
   //COMBO(num, MO(NUM)),
-  //COMBO(nav_lock, TG(1)),
 };
 
 #ifdef OTHER_KEYMAP_C
