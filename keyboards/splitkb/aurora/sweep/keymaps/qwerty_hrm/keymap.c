@@ -115,15 +115,15 @@ enum {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q, TD(TD_W_AA), TD(TD_E_AE), KC_R, KC_T,                                KC_Y, KC_U, KC_I, TD(TD_O_OE), KC_P,
-        LCTL_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LT(SYM, KC_F), KC_G,             KC_H, LT(SYM, KC_J), LALT_T(KC_K), RSFT_T(KC_L), RCTL_T(KC_SCLN),
+        LGUI_T(KC_A), LSFT_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,             KC_H, RCTL_T(KC_J), LALT_T(KC_K), RSFT_T(KC_L), RGUI_T(KC_SCLN),
         KC_Z, KC_X, KC_C, KC_V, KC_B,                                           KC_N, KC_M,  KC_COMM,  KC_DOT, KC_SLSH,
-                            KC_ESC, LT(NAV, KC_SPC),          LGUI_T(KC_TAB), LSFT(KC_TAB)
+                            LSFT_T(KC_ESC), LT(NAV, KC_SPC),          LT(SYM, KC_TAB), LSFT(KC_TAB)
     ),
 
     [1] = LAYOUT(
             KC_1,  KC_2,  KC_3,  KC_4,  KC_5,                                                  KC_6,  KC_7,  KC_8,  KC_9,  KC_0,
-          KC_LCTL,  KC_LSFT,  LALT_T(KC_LEFT),  KC_RGHT,  KC_DEL,                             KC_BSPC,  KC_DOWN,  LALT_T(KC_UP), KC_RSFT, TD(TD_ENTER),
-          XXXX,  SELLINE,  KC_HOME,   KC_END,    XXXX,                                        XXXX,   KC_PGDN,   KC_PGUP,       XXXX,       XXXX,
+          KC_LGUI,  KC_LSFT,  LALT_T(KC_LEFT),  LCTL_T(KC_RGHT),  KC_DEL,                   KC_BSPC,  RCTL_T(KC_DOWN),  LALT_T(KC_UP), KC_RSFT, TD(TD_ENTER),
+          XXXX,  SELLINE,  KC_HOME,   KC_END,    XXXX,                                        XXXX,   KC_PGDN,   KC_PGUP,       ____,       ____,
                               ____,  ____,                               ____,  ____
     ),
 
@@ -192,9 +192,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // Combos
-const uint16_t PROGMEM switcher[] = {LT(SYM, KC_F), LT(SYM, KC_J), COMBO_END};
+const uint16_t PROGMEM switcher[] = {LCTL_T(KC_F), RCTL_T(KC_J), COMBO_END};
 const uint16_t PROGMEM launcher[] = {KC_G, KC_H, COMBO_END};
-const uint16_t PROGMEM caps_word[] = {LT(NAV, KC_SPC), LGUI_T(KC_BSPC), COMBO_END};
+const uint16_t PROGMEM caps_word[] = {LT(NAV, KC_SPC), LT(SYM, KC_TAB), COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(switcher, LGUI(KC_H)),
